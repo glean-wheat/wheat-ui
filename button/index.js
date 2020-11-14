@@ -32,11 +32,11 @@ template.innerHTML = `
           -webkit-box-shadow 0.15s ease-in;
           outline: none;
     }
-    .cancel{
+    .line {
         background-color: #f0f5fe;
         border-color: #b4cffb;
     }
-    .confirm {
+    .primary {
         background-color: #4387f4;
         color: #fff;
     }

@@ -99,8 +99,8 @@ WheatModaltemplate.innerHTML = `
       </div>
       <div class="wheat-modal-footer">
         <slot name='wheat-modal-footer'>
-          <wheat-button class="wheat-modal-footer-cancel" type='cancel'>取消</wheat-button>
-          <wheat-button class="wheat-modal-footer-confirm" type='confirm'>确定</wheat-button>
+          <wheat-button class="wheat-modal-footer-cancel" type='line'>取消</wheat-button>
+          <wheat-button class="wheat-modal-footer-confirm" type='primary'>确定</wheat-button>
         </slot>
       </div>
     </div>
