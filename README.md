@@ -62,3 +62,53 @@ export default App
 ```
 
 ## 在 Vue 中使用
+
+```vue
+<template>
+  <div>
+    <button @click="showModal">
+      显示弹框
+    </button>
+    <wheat-modal title="title" :visiable="visiable.toString()">
+      <div slot="content">弹框内容</div>
+    </wheat-modal>
+    <div>{{ visiable }}</div>
+  </div>
+</template>
+
+<script>
+import 'web-component-wheat-ui'
+
+export default {
+  data() {
+    return {
+      visiable: false
+    }
+  },
+  mounted() {
+    const MyModalDom = document.querySelector('wheat-modal')
+    MyModalDom.addEventListener('onCancel', value => {
+      const {
+        detail: { visiable }
+      } = value
+      console.log('触发取消方法', value)
+      this.visiable = visiable
+    })
+
+    MyModalDom.addEventListener('onConfirm', value => {
+      console.log('触发确定方法', value)
+      this.visiable = false
+      this.hidden()
+    })
+  },
+  methods: {
+    showModal() {
+      this.visiable = true
+    },
+    hidden() {
+      this.visiable = false
+    }
+  }
+}
+</script>
+```
