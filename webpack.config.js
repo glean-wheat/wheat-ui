@@ -6,9 +6,7 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
-    library: 'wheatui',
-    libraryTarget: 'umd',
-    libraryExport: 'default'
+    library: 'wheatui'
   },
   mode: 'none',
   optimization: {

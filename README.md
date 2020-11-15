@@ -6,6 +6,53 @@
 
 无论你的技术栈使用的是 angular、vue、react；不存在框架兼容问题，你就当做标签直接使用
 
-## 在 Vue、React、Angular 中使用
+## 安装
+
+npm i web-component-wheat-ui
+
+## 使用
+
+import 'web-component-wheat-ui'
+
+## 在 React 中使用
+
+```jsx
+import React, { useState, useEffect } from 'react'
+import 'web-component-wheat-ui'
+const App = () => {
+  const [visiable, setVisiable] = useState(false)
+  useEffect(() => {
+    const MyModalDom = document.querySelector('wheat-modal')
+    MyModalDom.addEventListener('onCancel', value => {
+      const {
+        detail: { visiable }
+      } = value
+      console.log('触发取消方法')
+      setVisiable(visiable)
+    })
+
+    MyModalDom.addEventListener('onConfirm', value => {
+      console.log('触发确定方法')
+      setVisiable(false)
+    })
+  }, [])
+  return (
+    <div className='App'>
+      <button
+        onClick={() => {
+          setVisiable(true)
+        }}
+      >
+        显示弹框
+      </button>
+      <wheat-modal title='title' visiable={visiable}>
+        <div slot='content'>弹框内容</div>
+      </wheat-modal>
+    </div>
+  )
+}
+
+export default App
+```
 
 ## Bit 和 WebComponent 结合
