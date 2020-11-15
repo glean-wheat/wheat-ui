@@ -47,7 +47,7 @@ template.innerHTML = `
   </div>
 `
 
-class Button extends HTMLElement {
+class WheatButton extends HTMLElement {
   constructor() {
     super()
 
@@ -67,4 +67,4 @@ class Button extends HTMLElement {
   }
 }
 
-window.customElements.define('wheat-button', Button)
+window.customElements.define('wheat-button', WheatButton)

@@ -2,11 +2,11 @@ const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = {
   entry: {
-    'hi-request.min': './src/index.js'
+    'wheat.ui.min': './src/index.js'
   },
   output: {
     filename: '[name].js',
-    library: 'HiRequest',
+    library: 'wheatui',
     libraryTarget: 'umd',
     libraryExport: 'default'
   },
@@ -17,8 +17,8 @@ module.exports = {
       new TerserPlugin({
         terserOptions: {
           output: {
-            comments: false,
-          },
+            comments: false
+          }
         },
         extractComments: false,
         include: /\.min\.js$/
