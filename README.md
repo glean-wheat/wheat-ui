@@ -8,11 +8,17 @@
 
 ## 安装
 
+```bash
 npm i web-component-wheat-ui
+
+```
 
 ## 使用
 
+```bash
 import 'web-component-wheat-ui'
+
+```
 
 ## 在 React 中使用
 
@@ -55,4 +61,4 @@ const App = () => {
 export default App
 ```
 
-## Bit 和 WebComponent 结合
+## 在 Vue 中使用
