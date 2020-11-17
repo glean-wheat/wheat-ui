@@ -6,7 +6,54 @@
 
 无论你的技术栈使用的是 angular、vue、react；不存在框架兼容问题，你就当做标签直接使用
 
-## 安装
+## 在 html 中使用
+
+### 将 dist 中的 wheat.ui.min.js 保存在本地或者 CDN 上，然后通过 script 引入即可
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Modal</title>
+  </head>
+  <style></style>
+  <body>
+    <button onclick="showModal()">显示弹框</button>
+    <wheat-modal title="弹窗" visiable="false" maskCloseable="true">
+      <div slot="content">
+        弹框内容
+      </div>
+    </wheat-modal>
+  </body>
+  <script src="./dist/wheat.ui.min.js"></script>
+  <script>
+    const MyModalDom = document.querySelector('wheat-modal')
+
+    MyModalDom.addEventListener('onCancel', value => {
+      const {
+        detail: { visiable }
+      } = value
+      console.log('触发取消方法')
+      MyModalDom.setAttribute('visiable', visiable)
+    })
+
+    MyModalDom.addEventListener('onConfirm', value => {
+      console.log('触发确定方法')
+      MyModalDom.setAttribute('visiable', false)
+    })
+    const showModal = () => {
+      MyModalDom.setAttribute('visiable', true)
+    }
+  </script>
+</html>
+```
+
+## 在 angular、vue、react 项目中使用，
+
+### 安装
 
 ```bash
 npm i web-component-wheat-ui
