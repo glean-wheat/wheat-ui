@@ -7,6 +7,8 @@
     <title>Modal</title>
   </head>
   <style></style>
+  <script src="./src/ployfills/webcomponents-bundle.js"></script>
+
   <body>
     <button onclick="showModal()">显示弹框</button>
     <wheat-modal title="弹窗" visiable="false" maskCloseable="true">
@@ -18,8 +20,7 @@
       </div> -->
     </wheat-modal>
   </body>
-  <script src="./button/index.js"></script>
-  <script src="./modal/index.js"></script>
+  <script src="./dist/wheat.ui.min.js"></script>
   <script>
     const MyModalDom = document.querySelector('wheat-modal')
 
