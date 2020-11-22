@@ -8,9 +8,10 @@
   </head>
   <style></style>
   <script src="./src/ployfills/webcomponents-bundle.js"></script>
+  <script src="./src/ployfills/custom-elements-es5-adapter.js"></script>
 
   <body>
-    <button onclick="showModal()">显示弹框</button>
+    <wheat-button>打开弹框</wheat-button>
     <wheat-modal title="弹窗" visiable="false" maskCloseable="true">
       <div slot="content">
         弹框内容
@@ -20,7 +21,9 @@
       </div> -->
     </wheat-modal>
   </body>
-  <script src="./dist/wheat.ui.min.js"></script>
+  <!-- <script src="./dist/wheat.ui.min.js"></script> -->
+  <script src="./src/button/index.js"></script>
+  <script src="./src/modal/index.js"></script>
   <script>
     const MyModalDom = document.querySelector('wheat-modal')
 
@@ -36,7 +39,11 @@
       console.log('触发确定方法')
       MyModalDom.setAttribute('visiable', false)
     })
-    const showModal = () => {
+    const showModal = value => {
+      MyModalDom.setAttribute('visiable', true)
+    }
+    document.querySelector('wheat-button').onClick = value => {
+      console.log(value)
       MyModalDom.setAttribute('visiable', true)
     }
   </script>

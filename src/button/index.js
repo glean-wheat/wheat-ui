@@ -56,7 +56,7 @@ class WheatButton extends HTMLElement {
   }
   connectedCallback() {
     this.$button = this._shadowRoot.querySelector('.wheat-button')
-    const type = this.getAttribute('type')
+    const type = this.getAttribute('type') || 'primary'
     this.$button.classList.add(type)
     this.$button.innerHTML = this.innerHTML
     this.$button.addEventListener('click', () => {
