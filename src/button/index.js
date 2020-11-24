@@ -419,11 +419,6 @@ class WheatButton extends HTMLElement {
   connectedCallback() {
     this.initBtnStyle()
     this.$button.innerHTML = this.innerHTML
-    this.$button.addEventListener('click', () => {
-      new CustomEvent('click', {
-        detail: { visiable: false }
-      })
-    })
   }
   render() {
     this._shadowRoot = this.attachShadow({ mode: 'open' })
