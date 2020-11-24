@@ -120,9 +120,7 @@ class WheatModal extends HTMLElement {
     this.$modalRoot = this._shadowRoot.querySelector('.wheat-modal')
     this.$closeBtn = this._shadowRoot.querySelector('.wheat-modal-header-close')
     this.$wrapper = this._shadowRoot.querySelector('.wheat-modal-wrapper')
-    console.log('this.data.visiable', this.data.visiable)
     this.$mask = this._shadowRoot.querySelector('.wheat-modal-mask')
-
     this.bindEvents()
   }
   static get observedAttributes() {

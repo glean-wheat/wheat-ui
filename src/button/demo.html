@@ -8,27 +8,17 @@
   </head>
   <link rel="stylesheet" href="./src/base-css/variables.css" />
   <style></style>
-  <script src="./src/ployfills/webcomponents-bundle.js"></script>
-  <script src="./src/ployfills/custom-elements-es5-adapter.js"></script>
 
   <body>
-    <wheat-button
-      onclick="showModal()"
-      id="open"
-      type="line"
-      appearance="link"
-      href="pp"
-    >
+    <wheat-button id="open" type="line" appearance="link" href="pp">
       <span slot="icon">+</span>
       打开弹框
     </wheat-button>
   </body>
-  <!-- <script src="./dist/wheat.ui.min.js"></script> -->
   <script src="./index.js"></script>
   <script>
     document.querySelector('wheat-button').click = value => {
       console.log(value)
-      MyModalDom.setAttribute('visiable', true)
     }
   </script>
 </html>
