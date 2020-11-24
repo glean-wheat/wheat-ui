@@ -50,9 +50,7 @@ template.innerHTML = `
 class WheatButton extends HTMLElement {
   constructor() {
     super()
-
-    this._shadowRoot = this.attachShadow({ mode: 'open' })
-    this._shadowRoot.appendChild(template.content.cloneNode(true))
+    this.renderShadowDom()
   }
   connectedCallback() {
     this.$button = this._shadowRoot.querySelector('.wheat-button')
@@ -64,6 +62,10 @@ class WheatButton extends HTMLElement {
         detail: { visiable: false }
       })
     })
+  }
+  renderShadowDom() {
+    this._shadowRoot = this.attachShadow({ mode: 'open' })
+    this._shadowRoot.appendChild(WheatModaltemplate.content.cloneNode(true))
   }
 }
 
