@@ -428,10 +428,6 @@ class WheatButton extends HTMLElement {
         : template.content.cloneNode(true)
     )
   }
-  renderShadowDom() {
-    this._shadowRoot = this.attachShadow({ mode: 'open' })
-    this._shadowRoot.appendChild(WheatModaltemplate.content.cloneNode(true))
-  }
 }
 
 window.customElements.define('wheat-button', WheatButton)

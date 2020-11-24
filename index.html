@@ -10,7 +10,7 @@
   <style></style>
 
   <body>
-    <wheat-button onclick="showModal()" id="open" type="line">
+    <!-- <wheat-button onclick="showModal()" id="open" type="line">
       打开弹框
     </wheat-button>
     <wheat-modal title="弹窗" visiable="false" maskCloseable="true">
@@ -23,32 +23,34 @@
       <div slot="wheat-modal-footer">
         <wheat-button>自定义按钮</wheat-button>
       </div>
-    </wheat-modal>
+    </wheat-modal> -->
+    <wheat-input></wheat-input>
   </body>
-  <script src="./dist/wheat.ui.min.js"></script>
+  <!-- <script src="./dist/wheat.ui.min.js"></script> -->
   <!-- <script src="./src/button/index.js"></script>
   <script src="./src/modal/index.js"></script> -->
+  <script src="./src/input/index.js"></script>
   <script>
-    const MyModalDom = document.querySelector('wheat-modal')
+    // const MyModalDom = document.querySelector('wheat-modal')
 
-    MyModalDom.addEventListener('onCancel', value => {
-      const {
-        detail: { visiable }
-      } = value
-      console.log('触发取消方法')
-      MyModalDom.setAttribute('visiable', visiable)
-    })
+    // MyModalDom.addEventListener('onCancel', value => {
+    //   const {
+    //     detail: { visiable }
+    //   } = value
+    //   console.log('触发取消方法')
+    //   MyModalDom.setAttribute('visiable', visiable)
+    // })
 
-    MyModalDom.addEventListener('onConfirm', value => {
-      console.log('触发确定方法')
-      MyModalDom.setAttribute('visiable', false)
-    })
-    const showModal = value => {
-      MyModalDom.setAttribute('visiable', true)
-    }
-    document.querySelector('wheat-button').click = value => {
-      console.log(value)
-      MyModalDom.setAttribute('visiable', true)
-    }
+    // MyModalDom.addEventListener('onConfirm', value => {
+    //   console.log('触发确定方法')
+    //   MyModalDom.setAttribute('visiable', false)
+    // })
+    // const showModal = value => {
+    //   MyModalDom.setAttribute('visiable', true)
+    // }
+    // document.querySelector('wheat-button').click = value => {
+    //   console.log(value)
+    //   MyModalDom.setAttribute('visiable', true)
+    // }
   </script>
 </html>
