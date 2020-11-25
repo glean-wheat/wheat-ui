@@ -1,5 +1,6 @@
 const template = document.createElement('template')
 const templateTagA = document.createElement('template')
+
 const styles = `
 <style>
     .wheat-button-container {

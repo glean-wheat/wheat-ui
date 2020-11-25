@@ -415,6 +415,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const template = document.createElement('template')
 const templateTagA = document.createElement('template')
+
 const styles = `
 <style>
     .wheat-button-container {
