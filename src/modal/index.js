@@ -90,7 +90,11 @@ WheatModaltemplate.innerHTML = `
     <div class="wheat-modal-wrapper">
       <div class="wheat-modal-header">
         <span class="wheat-modal-header-text"></span>
-        <span class="wheat-modal-header-close">X</span>
+        <span class="wheat-modal-header-close">
+        <slot name='wheat-modal-close-icon'>
+          X
+        </slot>
+        </span>
       </div>
       <div class="wheat-modal-content">
         <slot name="content">
