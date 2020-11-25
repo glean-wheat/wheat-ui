@@ -422,11 +422,16 @@ class WheatButton extends HTMLElement {
   }
   render() {
     this._shadowRoot = this.attachShadow({ mode: 'open' })
+    const linkElem = document.createElement('link')
+    linkElem.setAttribute('rel', 'stylesheet')
+    linkElem.setAttribute('href', '../base-css/variables.css')
+    this._shadowRoot.appendChild(linkElem)
     this._shadowRoot.appendChild(
       this.href
         ? templateTagA.content.cloneNode(true)
         : template.content.cloneNode(true)
     )
+    // Apply external styles to the shadow dom
   }
 }
 

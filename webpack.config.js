@@ -9,6 +9,12 @@ module.exports = {
     library: 'wheatui'
   },
   mode: 'none',
+  rules: [
+    {
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader']
+    }
+  ],
   optimization: {
     minimize: true,
     minimizer: [
