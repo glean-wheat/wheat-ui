@@ -1,2 +1,2 @@
-import style from '../base-css/variables.css'
+import '../base-css/variables.css'
 import './input'
