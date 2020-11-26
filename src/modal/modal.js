@@ -144,7 +144,6 @@ class WheatModal extends HTMLElement {
       '.wheat-modal-header-text'
     ).innerHTML = this.data.title
     this._shadowRoot.querySelector('.wheat-modal-content')
-    console.log(this.data)
     this.$closeBtn.style.display = this.data.closeable ? 'display' : 'none'
   }
   bindEvents() {
@@ -181,7 +180,11 @@ class WheatModal extends HTMLElement {
     })
     this.data.maskCloseable === 'true' &&
       this.$mask.addEventListener('click', () => {
-        this.$modalRoot.style.display = 'none'
+        this.dispatchEvent(
+        new CustomEvent('onCancel', {
+          detail: { visiable: false }
+        })
+        )
       })
   }
   show() {

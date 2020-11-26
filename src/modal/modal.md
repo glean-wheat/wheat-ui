@@ -23,7 +23,7 @@ const App = () => {
   }, [])
   return (
     <div className='App'>
-     <wheat-button  onClick={() => {
+     <wheat-button onClick={() => {
           setVisiable(true)
         }} id="open" type="line">
       打开弹框
