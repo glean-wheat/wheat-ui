@@ -52,6 +52,16 @@ WheatModaltemplate.innerHTML = `
   border-radius: 2px;
   box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.1);
 }
+.wheat-modal-wrapper--small {
+  width: 360px;
+  max-height: 600px;
+  min-height: 240px;
+}
+.wheat-modal-wrapper--large {
+    width: 800px;
+    max-height: 600px;
+    min-height: 240px;
+}
 .wheat-modal-wrapper-show {
   animation:scale 0.3s 1;
 }
@@ -128,7 +138,7 @@ class WheatModal extends HTMLElement {
     this.bindEvents()
   }
   static get observedAttributes() {
-    return ['visiable', 'title']
+    return ['visiable', 'title', 'size']
   }
   attributeChangedCallback(name, oldVal, newVal) {
     this.data[name] = newVal
@@ -137,6 +147,9 @@ class WheatModal extends HTMLElement {
     if (name === 'visiable' && newVal !== 'false') {
       this.$mask.classList.add('wheat-modal-mask-show')
       this.$wrapper.classList.add('wheat-modal-wrapper-show')
+    }
+    if (name === 'size') {
+      this.$wrapper.classList.add('wheat-modal-wrapper--' + newVal)
     }
   }
 

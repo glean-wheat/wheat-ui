@@ -18,7 +18,6 @@ module.exports = {
     ...getEntry()
   },
   output: {
-    library: 'wheatui',
     filename: '[name].js',
     chunkFilename: '[name].js'
   },
@@ -42,7 +41,7 @@ module.exports = {
           }
         },
         extractComments: false,
-        include: /\.min\.js$/
+        include: /\.js$/
       })
     ]
   }

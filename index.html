@@ -15,24 +15,22 @@
     <wheat-button onclick="showModal()" id="open" type="line">
       打开弹框
     </wheat-button>
-    <wheat-modal title="弹窗" visiable="false" maskCloseable="true">
+    <wheat-modal title="弹窗" visiable="false" >
       <div slot="content">
         自定义弹框内容
       </div>
       <div slot="content">
         自定义弹框内容2
       </div>
-      <div slot="wheat-modal-footer">
-        <wheat-button>自定义按钮</wheat-button>
-      </div>
+     
     </wheat-modal>
     <wheat-input></wheat-input>
   </body>
   <!-- <script src="./dist/wheat.ui.min.js"></script> -->
-  <!-- <script src="./src/button/index.js"></script>
-  <script src="./src/modal/index.js"></script> -->
+  <script src="./src/button/button.js"></script>
+  <script src="./src/modal/modal.js"></script>
   <!-- <script src="./src/input/index.js"></script> -->
-  <script src="./dist/button.js"></script>
+  <!-- <script src="./dist/button.js"></script> -->
   <script>
     const MyModalDom = document.querySelector('wheat-modal')
 
