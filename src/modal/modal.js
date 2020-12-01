@@ -131,6 +131,7 @@ class WheatModal extends HTMLElement {
     return ['visiable', 'title']
   }
   attributeChangedCallback(name, oldVal, newVal) {
+    this.data[name] = newVal
     this.$modalRoot.style.display =
       name === 'visiable' && newVal !== 'false' ? 'block' : 'none'
     if (name === 'visiable' && newVal !== 'false') {
@@ -144,7 +145,6 @@ class WheatModal extends HTMLElement {
       '.wheat-modal-header-text'
     ).innerHTML = this.data.title
     this._shadowRoot.querySelector('.wheat-modal-content')
-    console.log(this.data)
     this.$closeBtn.style.display = this.data.closeable ? 'display' : 'none'
   }
   bindEvents() {
