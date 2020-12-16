@@ -2,9 +2,9 @@ const TerserPlugin = require('terser-webpack-plugin')
 const glob = require('glob')
 const getEntry = () => {
   const entry = {
-    'wheat.ui.min': ['./src/index.js']
+    'wheat.ui.min': ['../src/index.js']
   }
-  let srcDirName = './src/*/index.js'
+  let srcDirName = '../src/*/index.js'
   glob.sync(srcDirName).forEach(function(name) {
     let n = name.slice(0, name.length - 9)
     n = n.slice(n.lastIndexOf('/')).split('/')[1]
@@ -14,7 +14,7 @@ const getEntry = () => {
 }
 module.exports = {
   entry: {
-    'wheat.ui.min': './src/index.js',
+    'wheat.ui.min': '../src/index.js',
     ...getEntry()
   },
   output: {
@@ -22,7 +22,7 @@ module.exports = {
     chunkFilename: '[name].js'
   },
   devServer: {
-    contentBase: './dist'
+    contentBase: '../dist'
   },
   mode: 'none',
   module: {

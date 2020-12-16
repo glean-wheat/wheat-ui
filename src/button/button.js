@@ -393,7 +393,7 @@ class WheatButton extends HTMLElement {
     this.$button = this._shadowRoot.querySelector('.wheat-button')
   }
   static get observedAttributes() {
-    return ['disabled', 'href','target']
+    return ['disabled', 'href', 'target']
   }
   attributeChangedCallback(name, oldVal, newVal) {
     name === 'disabled' && this.setDisabled(name, oldVal, newVal)
