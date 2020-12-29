@@ -43,6 +43,9 @@ module.exports = {
             comments: false
           }
         },
+        compress: {
+            pure_funcs: ["console.log"]
+        },
         extractComments: false,
         include: /\.js$/
       })
