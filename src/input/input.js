@@ -1,4 +1,5 @@
 const template = document.createElement('template')
+const prefix = 'wheat-input'
 const styles = `
 <style>
 .wheat-input,
@@ -246,4 +247,4 @@ class WheatInput extends HTMLElement {
   }
 }
 
-window.customElements.define('wheat-input', WheatInput)
+!window.customElements.get(prefix) && window.customElements.define(prefix, WheatInput)

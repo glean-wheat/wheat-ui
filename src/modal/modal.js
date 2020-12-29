@@ -1,4 +1,6 @@
 const WheatModaltemplate = document.createElement('template')
+const prefix = 'wheat-modal'
+
 WheatModaltemplate.innerHTML = `
 <style>
 :host{
@@ -142,8 +144,7 @@ class WheatModal extends HTMLElement {
   }
   attributeChangedCallback(name, oldVal, newVal) {
     this.data[name] = newVal
-    this.$modalRoot.style.display =
-      name === 'visiable' && newVal !== 'false' ? 'block' : 'none'
+    this.$modalRoot.style.display = name === 'visiable' && newVal !== 'false' ? 'block' : 'none'
     if (name === 'visiable' && newVal !== 'false') {
       this.$mask.classList.add('wheat-modal-mask-show')
       this.$wrapper.classList.add('wheat-modal-wrapper-show')
@@ -154,9 +155,7 @@ class WheatModal extends HTMLElement {
   }
 
   connectedCallback() {
-    this._shadowRoot.querySelector(
-      '.wheat-modal-header-text'
-    ).innerHTML = this.data.title
+    this._shadowRoot.querySelector('.wheat-modal-header-text').innerHTML = this.data.title
     this._shadowRoot.querySelector('.wheat-modal-content')
     this.$closeBtn.style.display = this.data.closeable ? 'display' : 'none'
   }
@@ -169,9 +168,7 @@ class WheatModal extends HTMLElement {
     this.removeEventListener('click', this._onClick)
   }
   hide() {
-    this.$cancelBtn = this._shadowRoot.querySelector(
-      '.wheat-modal-footer-cancel'
-    )
+    this.$cancelBtn = this._shadowRoot.querySelector('.wheat-modal-footer-cancel')
 
     // 添加自定义事件
     this.$cancelBtn.addEventListener('click', () => {
@@ -198,9 +195,7 @@ class WheatModal extends HTMLElement {
       })
   }
   show() {
-    this.$confirmBtn = this._shadowRoot.querySelector(
-      '.wheat-modal-footer-confirm'
-    )
+    this.$confirmBtn = this._shadowRoot.querySelector('.wheat-modal-footer-confirm')
     // 添加自定义事件
     this.$confirmBtn.addEventListener('click', () => {
       this.dispatchEvent(
@@ -217,4 +212,4 @@ class WheatModal extends HTMLElement {
   }
 }
 // this需要讲解
-window.customElements.define('wheat-modal', WheatModal)
+!window.customElements.get(prefix) && window.customElements.define(prefix, WheatModal)

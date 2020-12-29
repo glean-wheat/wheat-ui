@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open --config ./build/webpack.config.dev.js",
+    "dev": "node ./build/server.js"
   },
   "repository": {
     "type": "git",
@@ -15,6 +16,7 @@
   "devDependencies": {
     "css-loader": "^5.0.1",
     "glob": "^7.1.6",
+    "html-webpack-plugin": "^4.5.0",
     "style-loader": "^2.0.0",
     "terser-webpack-plugin": "^1.4.5",
     "webpack": "^4.32.2",
