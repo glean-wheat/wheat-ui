@@ -1,11 +1,11 @@
 const template = document.createElement('template')
 const templateTagA = document.createElement('template')
 const prefix = 'wheat-button'
-import cssText from './button.css'
-console.log('cssText', cssText)
+import * as styleContent from './button.css'
+
 const styles = `
 <style>
-    ${cssText.toString()}
+    ${JSON.stringify(styleContent)}
   </style>`
 
 template.innerHTML = `

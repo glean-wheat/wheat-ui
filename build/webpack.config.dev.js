@@ -27,14 +27,34 @@ module.exports = {
     chunkFilename: '[name].js'
   },
   devServer: {
-    contentBase: '../dist'
+    contentBase: '../dist',
+    hot: true
   },
   mode: 'none',
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        test: /\.css$/i,
+        use: [
+          {
+            loader: 'style-loader',
+            options: {
+              esModule: true,
+              modules: {
+                namedExport: true
+              }
+            }
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              esModule: true,
+              modules: {
+                namedExport: true
+              }
+            }
+          }
+        ]
       }
     ]
   },
