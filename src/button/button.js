@@ -1,11 +1,13 @@
+import * as styleContent from './button.scss'
+import { parseCss } from '../utils/utils'
+
 const template = document.createElement('template')
 const templateTagA = document.createElement('template')
 const prefix = 'wheat-button'
-import * as styleContent from './button.css'
-
+console.log('styleContent', styleContent)
 const styles = `
 <style>
-    ${JSON.stringify(styleContent)}
+    ${parseCss(styleContent)}
   </style>`
 
 template.innerHTML = `

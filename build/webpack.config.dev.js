@@ -62,7 +62,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Custom template',
       // Load a custom template (lodash by default)
-      template: resolve('src/button/index.html')
+      template: resolve('index.html')
     })
   ],
   optimization: {

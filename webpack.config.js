@@ -1,5 +1,10 @@
 const TerserPlugin = require('terser-webpack-plugin')
 const glob = require('glob')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyPlugin = require("copy-webpack-plugin");
+const path = require('path')
+const PROJ_ROOT = path.dirname(__dirname)
+const resolve = (...paths) => path.resolve(PROJ_ROOT , 'wheat-ui', ...paths)
 const getEntry = () => {
   const entry = {
     'wheat.ui.min': ['./src/index.js']
@@ -22,18 +27,51 @@ module.exports = {
     chunkFilename: '[name].js'
   },
   devServer: {
-    contentBase: './dist'
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000,
   },
   mode: 'none',
   module: {
     rules: [
       {
+        test: /\.scss$/,
+        use: [{
+          loader: "css-loader",
+            options: {
+              esModule: false,
+              modules: {
+                exportLocalsConvention: 'asIs',
+              },
+            }
+          },"sass-loader"
+        ]
+      },
+      {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: [{
+          loader: "css-loader",
+            options: {
+              esModule: false,
+              modules: {
+                exportLocalsConvention: 'asIs',
+              },
+            }
+          }
+        ]
       }
     ]
   },
-
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Custom template',
+      // Load a custom template (lodash by default)
+      template: resolve('index.html')
+    }),
+    new CopyPlugin( [
+        { from: resolve('src/base-css'), to: resolve('dist/static') }
+      ]),
+  ],
   optimization: {
     minimize: true,
     minimizer: [

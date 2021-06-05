@@ -31,12 +31,15 @@
     box-shadow 0.15s ease-in, color 0.3s ease-in,
     -webkit-box-shadow 0.15s ease-in;
 }
-.wheat-button.wheat-button--appearance--link {
-  background-color: transparent !important;
-  border: none !important;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
+.wheat-button{
+  &--appearance--link {
+    background-color: transparent !important;
+    border: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
 }
+
 .wheat-button--type--primary {
   background-color: var(--color-primary);
   color: var(--color-white);
