@@ -1,98 +1,11 @@
+import * as styleContent from './modal.scss'
+import { parseCss } from '../utils/utils'
 const WheatModaltemplate = document.createElement('template')
+const prefix = 'wheat-modal'
+
 WheatModaltemplate.innerHTML = `
 <style>
-:host{
-  display: block;
-}
-.wheat-modal-mask {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 0;
-  z-index: 1000;
-  background: rgba(0, 0, 0, 0.45);
-  transition: opacity 0.3s, height 0s 0.3s;
-}
-.wheat-modal-mask-show {
-  opacity: 1;
-  height: 100%;
-  transition: opacity 0.3s;
-}
-.wheat-modal-container {
-  z-index: 1000;
-  top: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  position: fixed;
-}
-
-.wheat-modal-header {
-  border-bottom: 1px solid #e6e6e6;
-  font-size: 16px;
-  color: #333;
-  font-weight: 600;
-  height: 54px;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 0 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-shrink: 0;
-}
-.wheat-modal-wrapper {
-  width: 600px;
-  max-height: 600px;
-  min-height: 240px;
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  border-radius: 2px;
-  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.1);
-}
-.wheat-modal-wrapper--small {
-  width: 360px;
-  max-height: 600px;
-  min-height: 240px;
-}
-.wheat-modal-wrapper--large {
-    width: 800px;
-    max-height: 600px;
-    min-height: 240px;
-}
-.wheat-modal-wrapper-show {
-  animation:scale 0.3s 1;
-}
-@keyframes scale
-{
-  from {transform: scale(0.4);opacity: 0;}
-  to {opacity: 1;transform: scale(1);}
-}
-.wheat-modal-header-close {
-  width: 1em;
-  height: 1em;
-  vertical-align: -0.15em !important;
-  overflow: hidden;
-  cursor: pointer;
-}
-.wheat-modal-footer {
-  border-top: 1px solid #e6e6e6;
-  height: 54px;
-  padding: 0 24px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex-shrink: 0;
-}
-.wheat-modal-content {
-  box-sizing: border-box;
-  flex: 1;
-  overflow: auto;
-  padding: 24px;
-}
-
+${parseCss(styleContent)}
 </style>
 <div class="wheat-modal">
   <div class="wheat-modal-mask"></div>
@@ -142,8 +55,7 @@ class WheatModal extends HTMLElement {
   }
   attributeChangedCallback(name, oldVal, newVal) {
     this.data[name] = newVal
-    this.$modalRoot.style.display =
-      name === 'visiable' && newVal !== 'false' ? 'block' : 'none'
+    this.$modalRoot.style.display = name === 'visiable' && newVal !== 'false' ? 'block' : 'none'
     if (name === 'visiable' && newVal !== 'false') {
       this.$mask.classList.add('wheat-modal-mask-show')
       this.$wrapper.classList.add('wheat-modal-wrapper-show')
@@ -154,9 +66,7 @@ class WheatModal extends HTMLElement {
   }
 
   connectedCallback() {
-    this._shadowRoot.querySelector(
-      '.wheat-modal-header-text'
-    ).innerHTML = this.data.title
+    this._shadowRoot.querySelector('.wheat-modal-header-text').innerHTML = this.data.title
     this._shadowRoot.querySelector('.wheat-modal-content')
     this.$closeBtn.style.display = this.data.closeable ? 'display' : 'none'
   }
@@ -169,9 +79,7 @@ class WheatModal extends HTMLElement {
     this.removeEventListener('click', this._onClick)
   }
   hide() {
-    this.$cancelBtn = this._shadowRoot.querySelector(
-      '.wheat-modal-footer-cancel'
-    )
+    this.$cancelBtn = this._shadowRoot.querySelector('.wheat-modal-footer-cancel')
 
     // 添加自定义事件
     this.$cancelBtn.addEventListener('click', () => {
@@ -198,9 +106,7 @@ class WheatModal extends HTMLElement {
       })
   }
   show() {
-    this.$confirmBtn = this._shadowRoot.querySelector(
-      '.wheat-modal-footer-confirm'
-    )
+    this.$confirmBtn = this._shadowRoot.querySelector('.wheat-modal-footer-confirm')
     // 添加自定义事件
     this.$confirmBtn.addEventListener('click', () => {
       this.dispatchEvent(
@@ -217,4 +123,4 @@ class WheatModal extends HTMLElement {
   }
 }
 // this需要讲解
-window.customElements.define('wheat-modal', WheatModal)
+!window.customElements.get(prefix) && window.customElements.define(prefix, WheatModal)

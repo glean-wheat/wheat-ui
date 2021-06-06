@@ -32,7 +32,7 @@
   <script>
     const MyModalDom = document.querySelector('wheat-modal')
 
-    MyModalDom.addEventListener('onCancel', value => {
+    MyModalDom.addEventListener('onCancel', (value) => {
       const {
         detail: { visiable }
       } = value
@@ -40,7 +40,7 @@
       MyModalDom.setAttribute('visiable', visiable)
     })
 
-    MyModalDom.addEventListener('onConfirm', value => {
+    MyModalDom.addEventListener('onConfirm', (value) => {
       console.log('触发确定方法')
       MyModalDom.setAttribute('visiable', false)
     })
@@ -76,7 +76,7 @@ const App = () => {
   const [visiable, setVisiable] = useState(false)
   useEffect(() => {
     const MyModalDom = document.querySelector('wheat-modal')
-    MyModalDom.addEventListener('onCancel', value => {
+    MyModalDom.addEventListener('onCancel', (value) => {
       const {
         detail: { visiable }
       } = value
@@ -84,13 +84,13 @@ const App = () => {
       setVisiable(visiable)
     })
 
-    MyModalDom.addEventListener('onConfirm', value => {
+    MyModalDom.addEventListener('onConfirm', (value) => {
       console.log('触发确定方法')
       setVisiable(false)
     })
   }, [])
   return (
-    <div className='App'>
+    <div className="App">
       <button
         onClick={() => {
           setVisiable(true)
@@ -98,8 +98,8 @@ const App = () => {
       >
         显示弹框
       </button>
-      <wheat-modal title='title' visiable={visiable}>
-        <div slot='content'>弹框内容</div>
+      <wheat-modal title="title" visiable={visiable}>
+        <div slot="content">弹框内容</div>
       </wheat-modal>
     </div>
   )
@@ -134,7 +134,7 @@ export default {
   },
   mounted() {
     const MyModalDom = document.querySelector('wheat-modal')
-    MyModalDom.addEventListener('onCancel', value => {
+    MyModalDom.addEventListener('onCancel', (value) => {
       const {
         detail: { visiable }
       } = value
@@ -142,7 +142,7 @@ export default {
       this.visiable = visiable
     })
 
-    MyModalDom.addEventListener('onConfirm', value => {
+    MyModalDom.addEventListener('onConfirm', (value) => {
       console.log('触发确定方法', value)
       this.visiable = false
       this.hidden()
@@ -161,3 +161,7 @@ export default {
 ```
 
 [更多>>](https://github.com/glean-wheat/wheat-ui/tree/master/src)
+
+## 文档规划
+
+左边是名称；中间是代码；右边是实时预览

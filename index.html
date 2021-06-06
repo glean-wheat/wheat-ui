@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./static/variables.css">
     <title>Modal</title>
   </head>
   <style></style>
@@ -15,26 +16,20 @@
     <wheat-button onclick="showModal()" id="open" type="line">
       打开弹框
     </wheat-button>
-    <wheat-modal title="弹窗" visiable="false" >
+    <wheat-modal title="弹窗" visiable="false">
       <div slot="content">
         自定义弹框内容
       </div>
       <div slot="content">
         自定义弹框内容2
       </div>
-     
     </wheat-modal>
     <wheat-input></wheat-input>
   </body>
-  <!-- <script src="./dist/wheat.ui.min.js"></script> -->
-  <script src="./src/button/button.js"></script>
-  <script src="./src/modal/modal.js"></script>
-  <!-- <script src="./src/input/index.js"></script> -->
-  <!-- <script src="./dist/button.js"></script> -->
   <script>
     const MyModalDom = document.querySelector('wheat-modal')
 
-    MyModalDom.addEventListener('onCancel', value => {
+    MyModalDom.addEventListener('onCancel', (value) => {
       const {
         detail: { visiable }
       } = value
@@ -42,14 +37,14 @@
       MyModalDom.setAttribute('visiable', visiable)
     })
 
-    MyModalDom.addEventListener('onConfirm', value => {
+    MyModalDom.addEventListener('onConfirm', (value) => {
       console.log('触发确定方法')
       MyModalDom.setAttribute('visiable', false)
     })
-    const showModal = value => {
+    const showModal = (value) => {
       MyModalDom.setAttribute('visiable', true)
     }
-    document.querySelector('wheat-button').click = value => {
+    document.querySelector('wheat-button').click = (value) => {
       console.log(value)
       MyModalDom.setAttribute('visiable', true)
     }
