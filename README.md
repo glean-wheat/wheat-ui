@@ -162,6 +162,47 @@ export default {
 
 [更多>>](https://github.com/glean-wheat/wheat-ui/tree/master/src)
 
+## 贡献流程
+1.  添加 SSH 
+2. clone 仓库
+
+```
+https://github.com/glean-wheat/wheat-ui
+```
+3. 新建 issue
+
+发现问题或者有开发者提出的问题了后，在`https://github.com/glean-wheat/wheat-ui/issues`创建issue;
+
+4. 在develop中拉取分支
+
+- 根据第三步创建的`issue`后，根据生成的`id`,创建分支，一般`bug`类的 命名为 `hotfix/#+ issueID`; 新增功能 `feature/#+issueID`
+
+eg:
+
+```
+feature/#3
+```
+
+5. 提交
+
+- 提交的时可根据 `commitlint` 规范进行提交；描述信息为该 `issue`的`id`;这样`github`会根据`id`进行关联
+
+eg:
+
+```
+git commit -m "feat: #3"
+```
+
+6: 提交PR
+
+master 是保护分支；需要有 review 之后；才可合并
+## 物料参考
+
+- https://xiaomi.github.io/hiui/zh-CN
+- sketch https://cdn.cnbj2m.fds.api.mi-img.com/project-file/HIUI_3.0_%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83Library.sketch?GalaxyAccessKeyId=5151729087601&Expires=9223372036854775807&Signature=yuzRY2ePDhAYmdxIw76IzlI0qjI=
 ## 文档规划
 
-左边是名称；中间是代码；右边是实时预览
+- [ ] 文档接入； storybook
+- [ ] 单测接入
+- [ ] react、vue 使用样式案例
+
