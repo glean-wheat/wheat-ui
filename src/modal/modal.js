@@ -78,44 +78,45 @@ class WheatModal extends HTMLElement {
     this.removeEventListener('keydown', this._onKeyDown)
     this.removeEventListener('click', this._onClick)
   }
+  onCancel() {
+    this.dispatchEvent(
+      // 自定义事件
+      new CustomEvent('onCancel', {
+        detail: { visiable: false }
+      })
+    )
+  }
+  onConfirm() {
+    this.dispatchEvent(
+      // 自定义事件
+      new CustomEvent('onConfirm', {
+        detail: { isConfirmed: true }
+      })
+    )
+  }
+  maskHide() {
+    this.$modalRoot.style.display = 'none'
+  }
   hide() {
     this.$cancelBtn = this._shadowRoot.querySelector('.wheat-modal-footer-cancel')
 
     // 添加自定义事件
-    this.$cancelBtn.addEventListener('click', () => {
-      this.dispatchEvent(
-        // 自定义事件
-        new CustomEvent('onCancel', {
-          detail: { visiable: false }
-        })
-      )
-    })
+    this.$cancelBtn.removeEventListener('click', this.onCancel.bind(this))
+    this.$cancelBtn.addEventListener('click', this.onCancel.bind(this))
 
     // 添加自定义事件
-    this.$closeBtn.addEventListener('click', () => {
-      this.dispatchEvent(
-        // 自定义事件
-        new CustomEvent('onCancel', {
-          detail: { visiable: false }
-        })
-      )
-    })
+    this.$closeBtn.removeEventListener('click', this.onCancel.bind(this))
+    this.$closeBtn.addEventListener('click', this.onCancel.bind(this))
+    
+    this.$closeBtn.removeEventListener('click', this.maskHide.bind())
     this.data.maskCloseable === 'true' &&
-      this.$mask.addEventListener('click', () => {
-        this.$modalRoot.style.display = 'none'
-      })
+      this.$mask.addEventListener('click', this.maskHide.bind())
   }
   show() {
     this.$confirmBtn = this._shadowRoot.querySelector('.wheat-modal-footer-confirm')
     // 添加自定义事件
-    this.$confirmBtn.addEventListener('click', () => {
-      this.dispatchEvent(
-        // 自定义事件
-        new CustomEvent('onConfirm', {
-          detail: { isConfirmed: true }
-        })
-      )
-    })
+    this.$confirmBtn.removeEventListener('click', this.onConfirm.bind(this))
+    this.$confirmBtn.addEventListener('click', this.onConfirm.bind(this))
   }
   renderShadowDom() {
     this._shadowRoot = this.attachShadow({ mode: 'open' })
