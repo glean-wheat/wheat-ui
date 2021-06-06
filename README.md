@@ -180,7 +180,7 @@ https://github.com/glean-wheat/wheat-ui
 eg:
 
 ```
-feature/#2
+feature/#3
 ```
 
 5. 提交
@@ -190,7 +190,7 @@ feature/#2
 eg:
 
 ```
-git commit -m "feat: #2"
+git commit -m "feat: #3"
 ```
 
 6: 提交PR
