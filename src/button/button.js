@@ -4,7 +4,7 @@ import { parseCss } from '../utils/utils'
 const template = document.createElement('template')
 const templateTagA = document.createElement('template')
 const prefix = 'wheat-button'
-console.log('styleContent', styleContent)
+
 const styles = `
 <style>
     ${parseCss(styleContent)}
