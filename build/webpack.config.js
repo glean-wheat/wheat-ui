@@ -44,7 +44,8 @@ module.exports = {
                 exportLocalsConvention: 'asIs',
               },
             }
-          },"sass-loader"
+          },
+          "sass-loader"
         ]
       },
       {
