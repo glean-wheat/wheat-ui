@@ -1,14 +1,6 @@
-export const parseCss = (styleContent) => {
-    let string = styleContent.toString()
-    const locals = styleContent.locals
-    Object.keys(locals).forEach(key=>{
-      var reg = new RegExp(locals[key],'g');
-     string =  string.replace(reg, key)
-    })
-    return string
-  }
-
-export const watchAttributess = (_this) => {
+class AbstractClass extends HTMLElement {
+  constructor() {
+    super()
     const {observedAttributes = []} = _this.constructor
     if(observedAttributes.length){
       observedAttributes.forEach(attribute=>{
@@ -26,4 +18,12 @@ export const watchAttributess = (_this) => {
         })
       })
     }
+  }
 }
+
+
+/**
+ * // Instead of extending HTMLElement directly, we can now extend our AbstractClass
+class SomeElement extends AbstractClass {  }
+customElements.define('some-element', SomeElement);
+ */
