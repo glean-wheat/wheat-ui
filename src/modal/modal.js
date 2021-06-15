@@ -75,9 +75,17 @@ class WheatModal extends HTMLElement {
     this.show()
   }
   disconnectedCallback() {
+    this.$cancelBtn = this._shadowRoot.querySelector('.wheat-modal-footer-cancel')
     this.removeEventListener('keydown', this._onKeyDown)
     this.removeEventListener('click', this._onClick)
+    this.$closeBtn.removeEventListener('click', this.onCancel.bind(this))
+    this.$cancelBtn.removeEventListener('click', this.onCancel.bind(this))
+    this.$closeBtn.removeEventListener('click', this.maskHide.bind())
   }
+  maskHide() {
+    this.$modalRoot.style.display = 'none'
+  }
+
   onCancel() {
     this.dispatchEvent(
       // 自定义事件
@@ -94,29 +102,23 @@ class WheatModal extends HTMLElement {
       })
     )
   }
-  maskHide() {
-    this.$modalRoot.style.display = 'none'
-  }
+  // 添加自定义事件
   hide() {
-    this.$cancelBtn = this._shadowRoot.querySelector('.wheat-modal-footer-cancel')
-
+    this.$cancelBtn = 
+      this._shadowRoot.querySelector('.wheat-modal-footer-cancel')
     // 添加自定义事件
-    this.$cancelBtn.removeEventListener('click', this.onCancel.bind(this))
     this.$cancelBtn.addEventListener('click', this.onCancel.bind(this))
-
     // 添加自定义事件
-    this.$closeBtn.removeEventListener('click', this.onCancel.bind(this))
     this.$closeBtn.addEventListener('click', this.onCancel.bind(this))
-    
-    this.$closeBtn.removeEventListener('click', this.maskHide.bind())
     this.data.maskCloseable === 'true' &&
       this.$mask.addEventListener('click', this.maskHide.bind())
   }
   show() {
-    this.$confirmBtn = this._shadowRoot.querySelector('.wheat-modal-footer-confirm')
+    this.$confirmBtn = 
+      this._shadowRoot.querySelector('.wheat-modal-footer-confirm')
     // 添加自定义事件
-    this.$confirmBtn.removeEventListener('click', this.onConfirm.bind(this))
-    this.$confirmBtn.addEventListener('click', this.onConfirm.bind(this))
+    this.$confirmBtn.addEventListener('click', 
+        this.onConfirm.bind(this))
   }
   renderShadowDom() {
     this._shadowRoot = this.attachShadow({ mode: 'open' })
