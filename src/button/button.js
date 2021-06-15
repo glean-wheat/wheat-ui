@@ -1,10 +1,10 @@
 import * as styleContent from './button.scss'
-import { parseCss } from '../utils/utils'
+import { parseCss, watchAttributess } from '../utils/utils'
 
 const template = document.createElement('template')
 const templateTagA = document.createElement('template')
 const prefix = 'wheat-button'
-console.log('styleContent', styleContent)
+
 const styles = `
 <style>
     ${parseCss(styleContent)}
@@ -32,15 +32,19 @@ class WheatButton extends HTMLElement {
     this.href = this.getAttribute('href')
     this.render()
     this.$button = this._shadowRoot.querySelector('.wheat-button')
+    console.log(this)
   }
+
   static get observedAttributes() {
     return ['disabled', 'href', 'target']
   }
+
   attributeChangedCallback(name, oldVal, newVal) {
     name === 'disabled' && this.setDisabled(name, oldVal, newVal)
     name === 'href' && this.$button.setAttribute(name, newVal)
     name === 'target' && this.$button.setAttribute(name, newVal)
   }
+
   setDisabled(name, oldVal, newVal) {
     if (name === 'disabled') {
       this.$button.setAttribute(name, newVal)
@@ -68,5 +72,5 @@ class WheatButton extends HTMLElement {
     // Apply external styles to the shadow dom
   }
 }
-
+// 判定是否已经被插入
 !window.customElements.get(prefix) && window.customElements.define(prefix, WheatButton)

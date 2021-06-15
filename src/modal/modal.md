@@ -5,30 +5,30 @@ import React, { useState, useEffect } from 'react'
 import 'web-component-wheat-ui/dist/modal'
 import 'web-component-wheat-ui/dist/button'
 const App = () => {
-  const [visiable, setVisiable] = useState(false)
+  const [visible, setvisible] = useState(false)
   useEffect(() => {
     const MyModalDom = document.querySelector('wheat-modal')
     MyModalDom.addEventListener('onCancel', value => {
       const {
-        detail: { visiable }
+        detail: { visible }
       } = value
       console.log('触发取消方法')
-      setVisiable(visiable)
+      setvisible(visible)
     })
 
     MyModalDom.addEventListener('onConfirm', value => {
       console.log('触发确定方法')
-      setVisiable(false)
+      setvisible(false)
     })
   }, [])
   return (
     <div className='App'>
      <wheat-button onClick={() => {
-          setVisiable(true)
+          setvisible(true)
         }} id="open" type="line">
       打开弹框
     </wheat-button>
-    <wheat-modal title='title' visiable={visiable}>
+    <wheat-modal title='title' visible={visible}>
       <div slot='wheat-modal-close-icon'>close</div>
       <div slot='content'>弹框内容</div>
     </wheat-modal>
