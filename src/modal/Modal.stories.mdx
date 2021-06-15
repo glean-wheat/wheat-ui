@@ -11,7 +11,7 @@ import '../button/index.js'
 
 export const Template = (args) => html`
 <wheat-button>button</wheat-button>
-<wheat-modal visible=${false}>modal</wheat-modal>
+<wheat-modal visible='false'>modal</wheat-modal>
 `;
 
 
@@ -31,30 +31,30 @@ import React, { useState, useEffect } from 'react'
 import 'web-component-wheat-ui/dist/modal'
 import 'web-component-wheat-ui/dist/button'
 const App = () => {
-  const [visiable, setVisiable] = useState(false)
+  const [visible, setvisible] = useState(false)
   useEffect(() => {
     const MyModalDom = document.querySelector('wheat-modal')
     MyModalDom.addEventListener('onCancel', value => {
       const {
-        detail: { visiable }
+        detail: { visible }
       } = value
       console.log('触发取消方法')
-      setVisiable(visiable)
+      setvisible(visible)
     })
 
     MyModalDom.addEventListener('onConfirm', value => {
       console.log('触发确定方法')
-      setVisiable(false)
+      setvisible(false)
     })
   }, [])
   return (
     <div className='App'>
      <wheat-button onClick={() => {
-          setVisiable(true)
+          setvisible(true)
         }} id="open" type="line">
       打开弹框
     </wheat-button>
-    <wheat-modal title='title' visiable={visiable}>
+    <wheat-modal title='title' visible={visible}>
       <div slot='wheat-modal-close-icon'>close</div>
       <div slot='content'>弹框内容</div>
     </wheat-modal>
@@ -69,31 +69,75 @@ export default App
 
 ```html
 <template>
-  <div>
-    <wheat-button id="open" type="line" appearance="link" href="pp">
-      <span slot="icon">+</span>
-    打开弹框
-</wheat-button>
+  <div class="hello">
+    <wheat-button @click="showModal">
+      显示弹框
+    </wheat-button>
+    <wheat-modal title="title" :visible="visible">
+      <div slot="content">弹框内容</div>
+    </wheat-modal>
   </div>
 </template>
 
 <script>
 import 'web-component-wheat-ui'
-
+import 'web-component-wheat-ui/dist/static/variables.css'
 export default {
+  name: 'HelloWorld',
+  props: {
+    msg: String
+  },
   data() {
     return {
-      visiable: false
+      visible: false
     }
   },
   mounted() {
-    
+    const MyModalDom = document.querySelector('wheat-modal')
+    MyModalDom.addEventListener('onCancel', (value) => {
+      const {
+        detail: { visible }
+      } = value
+      console.log('触发取消方法', value, visible)
+      this.visible = 'false'
+    })
+
+    MyModalDom.addEventListener('onConfirm', (value) => {
+      console.log('触发确定方法', value)
+      this.visible = 'false'
+      this.hidden()
+    })
   },
   methods: {
-    
+    showModal() {
+      console.log('click')
+      this.visible = true
+    },
+    hidden() {
+      this.visible = 'false'
+    }
   }
 }
 </script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+</style>
+
 ```
 ## Attribute
 
@@ -108,3 +152,10 @@ export default {
 | size         | 模态框尺寸           | string              | 'default' \| 'large'  \| 'small'     |  'default'     |
 | style         | 自定义模态框样式           | object              | -                    | -         |
 | footer        | 自定义模态框底部           | ReactNode \| null   | -                    | -         |
+
+## Events
+
+| 名称      | 说明                 | 类型       | 参数 | 返回值 |
+| --------- | -------------------- | ---------- | ---- | ------ |
+| onConfirm | 确认事件触发时的回调 | () => void | -    | -      |
+| onCancel  | 取消事件触发时的回调 | () => void | -    | -      |
