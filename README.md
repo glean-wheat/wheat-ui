@@ -202,7 +202,7 @@ master 是保护分支；需要有 review 之后；才可合并
 ## 物料参考
 
 - https://xiaomi.github.io/hiui/zh-CN
-- sketch https://cdn.cnbj2m.fds.api.mi-img.com/project-file/HIUI_3.0_%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83Library.sketch?GalaxyAccessKeyId=5151729087601&Expires=9223372036854775807&Signature=yuzRY2ePDhAYmdxIw76IzlI0qjI=
+
 ## 文档规划
 
 - [ ] 文档接入； storybook
