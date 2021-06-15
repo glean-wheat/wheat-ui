@@ -25,7 +25,7 @@
   <style></style>
   <body>
     <button onclick="showModal()">显示弹框</button>
-    <wheat-modal title="弹窗" visiable="false" maskCloseable="true">
+    <wheat-modal title="弹窗" visible="false" maskCloseable="true">
       <div slot="content">
         弹框内容
       </div>
@@ -37,18 +37,18 @@
 
     MyModalDom.addEventListener('onCancel', (value) => {
       const {
-        detail: { visiable }
+        detail: { visible }
       } = value
       console.log('触发取消方法')
-      MyModalDom.setAttribute('visiable', visiable)
+      MyModalDom.setAttribute('visible', visible)
     })
 
     MyModalDom.addEventListener('onConfirm', (value) => {
       console.log('触发确定方法')
-      MyModalDom.setAttribute('visiable', false)
+      MyModalDom.setAttribute('visible', false)
     })
     const showModal = () => {
-      MyModalDom.setAttribute('visiable', true)
+      MyModalDom.setAttribute('visible', true)
     }
   </script>
 </html>
@@ -76,32 +76,32 @@ import 'web-component-wheat-ui'
 import React, { useState, useEffect } from 'react'
 import 'web-component-wheat-ui'
 const App = () => {
-  const [visiable, setVisiable] = useState(false)
+  const [visible, setvisible] = useState(false)
   useEffect(() => {
     const MyModalDom = document.querySelector('wheat-modal')
     MyModalDom.addEventListener('onCancel', (value) => {
       const {
-        detail: { visiable }
+        detail: { visible }
       } = value
       console.log('触发取消方法')
-      setVisiable(visiable)
+      setvisible(visible)
     })
 
     MyModalDom.addEventListener('onConfirm', (value) => {
       console.log('触发确定方法')
-      setVisiable(false)
+      setvisible(false)
     })
   }, [])
   return (
     <div className="App">
       <button
         onClick={() => {
-          setVisiable(true)
+          setvisible(true)
         }}
       >
         显示弹框
       </button>
-      <wheat-modal title="title" visiable={visiable}>
+      <wheat-modal title="title" visible={visible}>
         <div slot="content">弹框内容</div>
       </wheat-modal>
     </div>
@@ -119,10 +119,10 @@ export default App
     <button @click="showModal">
       显示弹框
     </button>
-    <wheat-modal title="title" :visiable="visiable.toString()">
+    <wheat-modal title="title" :visible="visible.toString()">
       <div slot="content">弹框内容</div>
     </wheat-modal>
-    <div>{{ visiable }}</div>
+    <div>{{ visible }}</div>
   </div>
 </template>
 
@@ -132,31 +132,31 @@ import 'web-component-wheat-ui'
 export default {
   data() {
     return {
-      visiable: false
+      visible: false
     }
   },
   mounted() {
     const MyModalDom = document.querySelector('wheat-modal')
     MyModalDom.addEventListener('onCancel', (value) => {
       const {
-        detail: { visiable }
+        detail: { visible }
       } = value
       console.log('触发取消方法', value)
-      this.visiable = visiable
+      this.visible = visible
     })
 
     MyModalDom.addEventListener('onConfirm', (value) => {
       console.log('触发确定方法', value)
-      this.visiable = false
+      this.visible = false
       this.hidden()
     })
   },
   methods: {
     showModal() {
-      this.visiable = true
+      this.visible = true
     },
     hidden() {
-      this.visiable = false
+      this.visible = false
     }
   }
 }

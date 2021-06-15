@@ -39,7 +39,7 @@ class WheatModal extends HTMLElement {
     super()
     this.data = {
       title: this.getAttribute('title') || '弹层组件',
-      visiable: this.getAttribute('visiable'),
+      visible: this.getAttribute('visible'),
       closeable: this.getAttribute('closeable') || 'true',
       maskCloseable: this.getAttribute('maskCloseable') || 'true'
     }
@@ -51,12 +51,13 @@ class WheatModal extends HTMLElement {
     this.bindEvents()
   }
   static get observedAttributes() {
-    return ['visiable', 'title', 'size']
+    return ['visible', 'title', 'size']
   }
   attributeChangedCallback(name, oldVal, newVal) {
     this.data[name] = newVal
-    this.$modalRoot.style.display = name === 'visiable' && newVal !== 'false' ? 'block' : 'none'
-    if (name === 'visiable' && newVal !== 'false') {
+    this.$modalRoot.style.display = name === 'visible' && newVal !== 'false' ? 'block' : 'none'
+    console.log('visible', newVal)
+    if (name === 'visible' && newVal !== 'false') {
       this.$mask.classList.add('wheat-modal-mask-show')
       this.$wrapper.classList.add('wheat-modal-wrapper-show')
     }
@@ -90,7 +91,7 @@ class WheatModal extends HTMLElement {
     this.dispatchEvent(
       // 自定义事件
       new CustomEvent('onCancel', {
-        detail: { visiable: false }
+        detail: { visible: false }
       })
     )
   }
@@ -109,7 +110,6 @@ class WheatModal extends HTMLElement {
     // 添加自定义事件
     this.$cancelBtn.addEventListener('click', this.onCancel.bind(this))
     // 添加自定义事件
-    this.$closeBtn.addEventListener('click', this.onCancel.bind(this))
     this.data.maskCloseable === 'true' &&
       this.$mask.addEventListener('click', this.maskHide.bind())
   }
@@ -125,5 +125,5 @@ class WheatModal extends HTMLElement {
     this._shadowRoot.appendChild(WheatModaltemplate.content.cloneNode(true))
   }
 }
-// this需要讲解
+// this 指代该标签
 !window.customElements.get(prefix) && window.customElements.define(prefix, WheatModal)
