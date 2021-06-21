@@ -124,7 +124,7 @@ class WheatModal extends HTMLElement {
     this.removeEventListener('click', this._onClick)
     this.$closeBtn.removeEventListener('click', this.onCancel.bind(this))
     this.$cancelBtn.removeEventListener('click', this.onCancel.bind(this))
-    this.$closeBtn.removeEventListener('click', this.maskHide.bind())
+    this.$closeBtn.removeEventListener('click', this.maskHide.bind(this))
   }
   maskHide() {
     this.$modalRoot.style.display = 'none'
@@ -154,7 +154,7 @@ class WheatModal extends HTMLElement {
     this.$cancelBtn.addEventListener('click', this.onCancel.bind(this))
     // 添加自定义事件
     this.data.maskCloseable === 'true' &&
-      this.$mask.addEventListener('click', this.maskHide)
+      this.$mask.addEventListener('click', this.maskHide.bind(this))
   }
   show() {
     this.$confirmBtn = 
