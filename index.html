@@ -16,7 +16,7 @@
     <wheat-button onclick="showModal()" id="open" type="line">
       打开弹框
     </wheat-button>
-    <wheat-modal title="弹窗" visiable="false">
+    <wheat-modal title="弹窗" visible="false">
       <div slot="content">
         自定义弹框内容
       </div>
@@ -31,22 +31,22 @@
 
     MyModalDom.addEventListener('onCancel', (value) => {
       const {
-        detail: { visiable }
+        detail: { visible }
       } = value
-      console.log('触发取消方法')
-      MyModalDom.setAttribute('visiable', visiable)
+      console.log('触发取消方法', visible)
+      MyModalDom.setAttribute('visible', visible)
     })
 
     MyModalDom.addEventListener('onConfirm', (value) => {
       console.log('触发确定方法')
-      MyModalDom.setAttribute('visiable', false)
+      MyModalDom.setAttribute('visible', false)
     })
     const showModal = (value) => {
-      MyModalDom.setAttribute('visiable', true)
+      MyModalDom.setAttribute('visible', true)
     }
     document.querySelector('wheat-button').click = (value) => {
       console.log(value)
-      MyModalDom.setAttribute('visiable', true)
+      MyModalDom.setAttribute('visible', true)
     }
   </script>
   <!-- 

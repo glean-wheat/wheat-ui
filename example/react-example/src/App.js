@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+/** disable-eslint */
+import { useState, useRef, useEffect } from 'react'
+import './App.css'
+// import './wheatui/static/variables.css'
+// import './wheatui/button'
+// import './wheatui/modal'
 
-function App() {
+// 基础样式文件
+import 'web-component-wheat-ui/dist/static/variables.css'
+import 'web-component-wheat-ui'
+
+const App = () => {
+  const [visible, setVisible] = useState(false)
+  const myModal = useRef()
+  useEffect(() => {
+    myModal.current.addEventListener('onCancel', (e) => {
+      console.log(e)
+      setVisible(false)
+    })
+  }, [])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <wheat-button
+        onClick={() => {
+          setVisible(true)
+        }}
+      >
+        打开弹窗
+      </wheat-button>
+
+      <wheat-modal
+        ref={myModal}
+        title="弹窗是否打算"
+        onCancel={(e) => {
+          console.log('new', e)
+        }}
+        visible={visible}
+      >
+        <div slot="content">弹框内容</div>
+      </wheat-modal>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
