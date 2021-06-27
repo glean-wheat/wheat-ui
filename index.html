@@ -13,7 +13,7 @@
     <!-- <wheat-button id="open" type="line">
       打开弹框
     </wheat-button> -->
-    <wheat-button onclick="showModal()" id="open" type="line">
+    <!-- <wheat-button onclick="showModal()" id="open" type="line">
       打开弹框
     </wheat-button>
     <wheat-modal title="弹窗" visiable="false">
@@ -23,31 +23,46 @@
       <div slot="content">
         自定义弹框内容2
       </div>
-    </wheat-modal>
+    </wheat-modal> -->
     <!-- <wheat-input></wheat-input> -->
+
+
+    <wheat-radio id="testradio"  value="1" name="name1"></wheat-radio>
+    <wheat-radio   value="2" name="name1"></wheat-radio>
+    <!-- <input type="radio" name='test' disabled>
+    <input type="radio" name='test' checked>
+    <input type="radio" name='test' value="radioval">
+    <input type="radio" id="myradio" name='test' disabled  checked value="radioval"> -->
   </body>
   <script>
-    const MyModalDom = document.querySelector('wheat-modal')
+    var radioval = '';
+    const dom = document.getElementById('testradio')
+    dom.setAttribute('value',456)
+    console.log(dom.data)
 
-    MyModalDom.addEventListener('onCancel', (value) => {
-      const {
-        detail: { visiable }
-      } = value
-      console.log('触发取消方法')
-      MyModalDom.setAttribute('visiable', visiable)
-    })
 
-    MyModalDom.addEventListener('onConfirm', (value) => {
-      console.log('触发确定方法')
-      MyModalDom.setAttribute('visiable', false)
-    })
-    const showModal = (value) => {
-      MyModalDom.setAttribute('visiable', true)
-    }
-    document.querySelector('wheat-button').click = (value) => {
-      console.log(value)
-      MyModalDom.setAttribute('visiable', true)
-    }
+
+    // const MyModalDom = document.querySelector('wheat-modal')
+
+    // MyModalDom.addEventListener('onCancel', (value) => {
+    //   const {
+    //     detail: { visiable }
+    //   } = value
+    //   console.log('触发取消方法')
+    //   MyModalDom.setAttribute('visiable', visiable)
+    // })
+
+    // MyModalDom.addEventListener('onConfirm', (value) => {
+    //   console.log('触发确定方法')
+    //   MyModalDom.setAttribute('visiable', false)
+    // })
+    // const showModal = (value) => {
+    //   MyModalDom.setAttribute('visiable', true)
+    // }
+    // document.querySelector('wheat-button').click = (value) => {
+    //   console.log(value)
+    //   MyModalDom.setAttribute('visiable', true)
+    // }
   </script>
   <!-- 
     1. web components 基础认识
