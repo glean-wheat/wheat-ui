@@ -199,9 +199,6 @@ git commit -m "feat: #3"
 6: 提交PR
 
 master 是保护分支；需要有 review 之后；才可合并
-## 物料参考
-
-- https://xiaomi.github.io/hiui/zh-CN
 
 ## 文档规划
 
