@@ -72,5 +72,5 @@ class WheatButton extends HTMLElement {
     // Apply external styles to the shadow dom
   }
 }
-// 判定是否已经被插入
+// 判定是否已经被注册
 !window.customElements.get(prefix) && window.customElements.define(prefix, WheatButton)
