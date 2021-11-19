@@ -50,5 +50,8 @@
   "bugs": {
     "url": "https://github.com/glean-wheat/wheat-ui/issues"
   },
-  "homepage": "https://github.com/glean-wheat/wheat-ui#readme"
+  "homepage": "https://github.com/glean-wheat/wheat-ui#readme",
+  "dependencies": {
+    "lit": "^2.0.2"
+  }
 }
