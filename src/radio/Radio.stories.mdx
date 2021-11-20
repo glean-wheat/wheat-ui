@@ -5,14 +5,10 @@ import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
 import { html } from 'lit-html';
 
 import './index';
-import '../button/index.js'
 
-<Meta title="Example/Modal" />
+<Meta title="Example/Radio" />
 
-export const Template = (args) => html`
-<wheat-button>button</wheat-button>
-<wheat-modal visible='false'>modal</wheat-modal>
-`;
+export const Template = (args) => html`<wheat-radio name='radio1'>sfds</wheat-radio>`;
 
 
 <Canvas>
@@ -28,8 +24,7 @@ export const Template = (args) => html`
 ## 在 React 中使用
 ```js
 import React, { useState, useEffect } from 'react'
-import 'web-component-wheat-ui/dist/modal'
-import 'web-component-wheat-ui/dist/button'
+import 'web-component-wheat-ui/dist/radio'
 const App = () => {
   const [visible, setvisible] = useState(false)
   useEffect(() => {

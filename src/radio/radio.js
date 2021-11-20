@@ -1,5 +1,5 @@
-import * as styleContent from './radio.scss'
 import { parseCss } from '../utils/utils'
+import * as styleContent from './radio.scss'
 
 const WheatRadiotemplate = document.createElement('template')
 const prefix = 'wheat-radio'
@@ -11,9 +11,9 @@ ${parseCss(styleContent)}
 </style>
 <div class="wheat-radio">
   <input class="input-radio" type="radio"></input>
+  <span class="wheat-radio__label"/>
 </div> 
 `
-// HTMLElement HTMLParagraphElement
 class WheatRadio extends HTMLElement {
   constructor() {
     super()
@@ -23,16 +23,12 @@ class WheatRadio extends HTMLElement {
       autoFocus: this.getAttribute('autoFocus') || 'false',
     }
     this.renderShadowDom()
-
-    // this.setAttribute('type','radio')
     this.$rootRadio = this._shadowRoot.querySelector('.wheat-radio')
     this.$inputRadio = this._shadowRoot.querySelector('.input-radio')
-    console.log('222',this.$rootRadio);
+    console.log(this.innerHTML);
   }
   static get observedAttributes() {
-    return ['value', 'autoFocus', 'checked',
-    // 'disabled'
-  ]
+    return ['value', 'autoFocus', 'checked']
   }
   
   /**
@@ -47,22 +43,22 @@ class WheatRadio extends HTMLElement {
    */
   attributeChangedCallback(name, oldVal, newVal) {
     this.data[name] = newVal
-    console.log(name+'---'+oldVal+'----'+newVal);
     for (const key in this.data) {
       if (Object.hasOwnProperty.call(this.data, key)) {
         const element = this.data[key];
-        console.log('---'+element);
         this.$inputRadio.setAttribute(key,element)
       }
     }
 
   }
 
+  connectedCallback() {
+    this.$rootRadio.querySelector('.wheat-radio__label').innerHTML = this.innerHTML
+  }
+
   renderShadowDom() {
     this._shadowRoot = this.attachShadow({ mode: 'open' })
     this._shadowRoot.appendChild(WheatRadiotemplate.content.cloneNode(true))
-
-    
   }
 }
  /**
