@@ -1,0 +1,21 @@
+
+:host {
+  .wheat-card {
+    width: 200px;
+    min-height: 120px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: 1px solid var(--color-gray-20);
+    &:hover{
+      box-shadow: 0 2px 8px 0 var(--color-gray-20);
+    }
+    &__title{
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}

@@ -16,7 +16,7 @@ export default {
 
 //👇 We create a “template” of how args map to rendering
 const Template = ({ primary, label }) =>
-  html`<wheat-input ?primary=${primary} .label=${label}></wheat-input>`;
+  html`<wheat-input ?primary=${primary} .label=${label}>123s</wheat-input>`;
 
 //👇 Each story then reuses that template
 export const Primary = Template.bind({});

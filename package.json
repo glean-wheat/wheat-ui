@@ -16,11 +16,11 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",
-    "@storybook/addon-actions": "^6.2.9",
-    "@storybook/addon-essentials": "^6.2.9",
-    "@storybook/addon-links": "^6.2.9",
-    "@storybook/react": "^6.1.18",
-    "@storybook/web-components": "^6.2.9",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@storybook/react": "^6.3.12",
+    "@storybook/web-components": "^6.3.12",
     "babel-loader": "^8.2.2",
     "boxen": "^5.0.1",
     "copy-webpack-plugin": "^5.1.2",
@@ -50,5 +50,8 @@
   "bugs": {
     "url": "https://github.com/glean-wheat/wheat-ui/issues"
   },
-  "homepage": "https://github.com/glean-wheat/wheat-ui#readme"
+  "homepage": "https://github.com/glean-wheat/wheat-ui#readme",
+  "dependencies": {
+    "lit": "^2.0.2"
+  }
 }

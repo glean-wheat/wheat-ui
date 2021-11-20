@@ -13,22 +13,34 @@
     <!-- <wheat-button id="open" type="line">
       打开弹框
     </wheat-button> -->
-    <wheat-button onclick="showModal()" id="open" type="line">
+    <!-- <wheat-button onclick="showModal()" id="open" type="line">
       打开弹框
     </wheat-button>
-    <wheat-modal title="弹窗" visiable="false">
+    <wheat-modal title="弹窗" visible="false">
       <div slot="content">
         自定义弹框内容
       </div>
       <div slot="content">
         自定义弹框内容2
       </div>
-    </wheat-modal>
+    </wheat-modal> -->
     <!-- <wheat-input></wheat-input> -->
-  <script src="wheat.ui.min.js"></script><script src="button.js"></script><script src="input.js"></script><script src="modal.js"></script></body>
-  <script>
-    const MyModalDom = document.querySelector('wheat-modal')
 
+
+    <wheat-radio id="testradio"  value="1" name="name1"></wheat-radio>
+    <wheat-radio   value="2" name="name1"></wheat-radio>
+    <!-- <input type="radio" name='test' disabled>
+    <input type="radio" name='test' checked>
+    <input type="radio" name='test' value="radioval">
+    <input type="radio" id="myradio" name='test' disabled  checked value="radioval"> -->
+  <script src="wheat.ui.min.js"></script><script src="button.js"></script><script src="card.js"></script><script src="input.js"></script><script src="modal.js"></script><script src="radio.js"></script></body>
+  <script>
+    var radioval = '';
+    const dom = document.getElementById('testradio')
+    dom.setAttribute('value',456)
+    console.log(dom.data)
+
+    const MyModalDom = document.querySelector('wheat-modal')
     MyModalDom.addEventListener('onCancel', (value) => {
       const {
         detail: { visiable }
