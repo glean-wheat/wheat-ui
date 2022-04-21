@@ -2,7 +2,7 @@
  * @Author: wugaoliang 
  * @Date: 2022-04-13 09:17:39 
  * @Last Modified by: wugaoliang
- * @Last Modified time: 2022-04-19 09:37:10
+ * @Last Modified time: 2022-04-21 10:36:55
  */
 function fetchSource (entry) {
   return fetch(entry).then((res) => {
@@ -12,7 +12,6 @@ function fetchSource (entry) {
 
 export default function importEntryHtml (app) {
   fetchSource(app.entry).then((html) => {
-      console.log('html:', html);
       // 获取html中的head和body,并替换为自定义标签，一个html只能有一个head和一个body
       const head = html.match(/<head[^>]*>([\s\S]*?)<\/head>/i)[0].replace(/<head/i, '<web-sandbox-head').replace(/<\/head>/i, '</web-sandbox-head>');
       const body = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i)[0].replace(/<body/i, '<web-sandbox-body').replace(/<\/body>/i, '</web-sandbox-body>');
@@ -20,11 +19,9 @@ export default function importEntryHtml (app) {
       // 将html字符串转化为DOM结构
       const htmlDom = document.createElement('div')
       htmlDom.innerHTML = _html
-      console.log('html:', htmlDom)
       
       // 获取静态资源
       getSource(htmlDom, app);
-      console.log('app', app);
 
       // 获取web-sandbox-head元素
       const webSandboxHead = htmlDom.querySelector('web-sandbox-head')

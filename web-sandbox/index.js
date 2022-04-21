@@ -2,7 +2,7 @@
  * @Author: wugaoliang 
  * @Date: 2022-04-12 10:22:09 
  * @Last Modified by: wugaoliang
- * @Last Modified time: 2022-04-19 11:31:35
+ * @Last Modified time: 2022-04-21 10:04:34
  */
 
 import RegisterMicroApp from './app';
@@ -63,7 +63,6 @@ class WebSandbox extends HTMLElement {
             container: this,
         })
         // 记录当前的子应用
-        console.log('app', app);
         this.microApp.set(this.name, app);
     }
 

@@ -1,4 +1,5 @@
 import importEntryHtml from './source';
+import {ProxySandBox} from './sand-box';
 
 export default class RegisterMicroApp {
     constructor ({ name, entry, container }) {
@@ -6,6 +7,8 @@ export default class RegisterMicroApp {
         this.entry = entry  // url地址
         this.container = container // web-sandbox元素，子应用的entry-html放置的位置
         this.status = 'loading'
+        this.sandBox = new ProxySandBox();
+        this.sandBox.active();
         importEntryHtml(this)
       }
   
@@ -26,10 +29,13 @@ export default class RegisterMicroApp {
       template.appendChild(html.cloneNode(true))
       // 将格式化后的DOM结构插入到容器中
       this.container.appendChild(template.cloneNode(true))
+      
       // 执行js 以便执行应用的初始化
       this.source.scripts.forEach((info) => {
         // 通过with(window)执行js代码
-        new Function(`${info.code}`)()
+        const code = this.sandBox.bindCode(info.code);
+        // new Function(`${info.code}`)()
+        new Function(`${code}`)()
       })
       this.mount()
     }
