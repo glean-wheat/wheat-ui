@@ -114,7 +114,7 @@ webcomponents 的标准中，有一种能力 [**custom elements**](https://devel
  * @Last Modified by: wugaoliang
  * @Last Modified by: wugaoliang
  * @Last Modified time: 2022-04-19 09:22:00
- * @Last Modified time: 2022-06-10 15:09:22
+ * @Last Modified time: 2022-06-10 15:14:26
  */
 const customElementsName = 'web-sandbox';
 const template = document.createElement('template');
@@ -686,6 +686,91 @@ class WebSandbox extends HTMLElement {
 
 
 ![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/906f54c0c7e24b729dd011add7eeebbc~tplv-k3u1fbpfcp-watermark.image?)
+
+
+#### JS沙箱
+
+接下来简单实现一下js沙箱部分内容。js沙箱内容建议大家可以掘金看一下，概念就不在这个地方过多的介绍了。直接上代码。
+```js
+// ./app-react/src/web-sandbox/sand-box.js
+
+export class ProxySandBox{
+    proxyWindow;
+    isRunning = false;
+    active(){
+        this.isRunning = true;
+    }
+    inactive(){
+        this.isRunning = false;
+    }
+    // 更多请参考 https://github.com/kuitos/import-html-entry/blob/09cc30adb60317556ac35b2d58e08a8398d75007/src/index.js#L54
+    bindCode(code) {
+        window.proxyWindow = this.proxyWindow
+        // TODO 通过 strictGlobal 方式切换 with 闭包，待 with 方式坑趟平后再合并
+        return `;(function(window){with(window){${code}}}).bind(window.proxyWindow)(window.proxyWindow, window.proxyWindow, window.proxyWindow);`
+    }
+    constructor(){
+        const microAppWidow = Object.create(null);
+        this.proxyWindow = new Proxy(microAppWidow,{
+            set:(target, prop, value)=>{
+                if(this.isRunning){
+                    target[prop] = value;
+                    Object.assign(microAppWidow, {[prop]: value})
+                }
+                return value;
+            },
+            get:(target, prop)=>{
+                return  prop in target ? microAppWidow[prop] : window[prop];
+            }
+        });
+    }
+}
+```
+接下来我们在加载代码之前，执行我们的沙箱代码
+```js
+// ./app-react/src/web-sandbox/app.jsx
+
+import importEntryHtml from './source';
+import {ProxySandBox} from './sand-box';
+
+export default class RegisterMicroApp {
+    ...
+  
+    // 资源加载完时执行
+    onLoad (html) {
+      // 清空web-sandbox
+      this.container.$wrapper.innerHTML = '';
+      // 创建一个模板标签，放置内容
+      const template = document.createElement('template')
+      template.appendChild(html.cloneNode(true))
+      // 将格式化后的DOM结构插入到容器中
+      this.container.appendChild(template.cloneNode(true))
+      
+      // 执行js 以便执行应用的初始化
+      this.source.scripts.forEach((info) => {
+        // 通过with(window)执行js代码
+        const code = this.sandBox.bindCode(info.code);
+        // new Function(`${info.code}`)()
+        new Function(`${code}`)()
+      })
+      this.mount()
+    }
+  }
+  ...
+```
+vue 以及react 应中的测试代码
+
+![image](https://user-images.githubusercontent.com/24740506/173010709-8b872a44-71a8-4a9b-8b6a-80f5e4024496.png)
+
+![image](https://user-images.githubusercontent.com/24740506/173010986-78d39b3c-7141-4380-b095-42900b2077c1.png)
+
+
+
+最终效果图
+
+![image](https://user-images.githubusercontent.com/24740506/173010972-cc8c2944-22ea-4d44-9891-c46a303c2aa9.png)
+
+
 
 ## 总结
 
