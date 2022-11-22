@@ -8,8 +8,13 @@
     <title>Modal</title>
   </head>
   <style></style>
-
+  <script>
+    var a = [{
+      title: 'Modal'
+    }]
+  </script>
   <body>
+    
     <!-- <wheat-button id="open" type="line">
       打开弹框
     </wheat-button> -->
@@ -23,18 +28,23 @@
       <div slot="content">
         自定义弹框内容2
       </div>
-    </wheat-modal> -->
-    <!-- <wheat-input></wheat-input> -->
+    </wheat-modal>
+    <wheat-input></wheat-input> -->
+    <wheat-table data="{{[1,2,2]}}"></wheat-table>
 
 
-    <wheat-radio id="testradio"  value="1" name="name1"></wheat-radio>
-    <wheat-radio   value="2" name="name1"></wheat-radio>
+    <!-- <wheat-radio id="testradio"  value="1" name="name1"></wheat-radio>
+    <wheat-radio   value="2" name="name1"></wheat-radio> -->
     <!-- <input type="radio" name='test' disabled>
     <input type="radio" name='test' checked>
     <input type="radio" name='test' value="radioval">
     <input type="radio" id="myradio" name='test' disabled  checked value="radioval"> -->
   </body>
   <script>
+    const tabBox = document.querySelector('wheat-table')
+    tabBox.setAttribute('data', a);
+  </script>
+  <!-- <script>
     var radioval = '';
     const dom = document.getElementById('testradio')
     dom.setAttribute('value',456)
@@ -60,7 +70,7 @@
       console.log(value)
       MyModalDom.setAttribute('visiable', true)
     }
-  </script>
+  </script> -->
   <!-- 
     1. web components 基础认识
     2. 组件库相关基础知识

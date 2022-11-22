@@ -1,17 +1,50 @@
-
+<!-- Button.stories.mdx-->
+import {useEffect} from "react";
 import { Meta, Story } from '@storybook/addon-docs';
-import './index';
-import '../button/index.js'
 
-<Meta title="Example/Modal" />
+import './index.js'
+
+<Meta title="Table" />
 
 <!-- 👇 We create a “template” of how args map to rendering -->
 
 export const Template = (args) => {
-  return <div>
-    <wheat-button>button</wheat-button>
-    <wheat-modal visible='false'>modal</wheat-modal>
-  </div>
+  useEffect(() => {
+     const tabBox = document.querySelector('wheat-table');
+     const testFn = (e) => {
+          console.log('onChange', e.target.value);
+      }
+     tabBox.setChangeFn(testFn)
+     tabBox.setColumns([
+          {
+              title: 'Name',
+              dataIndex: 'name',
+              key: 'name',
+              render: (text) => {
+                  console.log(text);
+                  return {
+                      type: 'Input',
+                      className: 'span-className',
+                      onChange:(e)=>{
+                          console.log('e', e.target.value)
+                      }
+                  };
+              },
+          },
+          {
+              title: 'test',
+              dataIndex: 'test',
+              key: 'test'
+          }
+      ])
+      tabBox.setAttribute('table-data', JSON.stringify([{
+          key: '1',
+          name: 'John Brown',
+          age: 'John Brown',
+          test: '输入框',
+      }]));
+  }, []);
+  return <div> <wheat-table /> </div>
 };
 
 <!-- 👇 Each story then reuses that template -->
@@ -25,28 +58,10 @@ export const Template = (args) => {
 </Story>
 
 
-<!-- 
-export const Template = (args) => html`
-<wheat-button>button</wheat-button>
-<wheat-modal visible='false'>modal</wheat-modal>
-`; -->
-
-
-<Canvas>
-  <Story name="基础使用" args={{ 
-      label: '基础使用'
-    }}>
-    {Template.bind({})}
-   </Story>
-</Canvas>
-
-
-
 ## 在 React 中使用
 ```js
 import React, { useState, useEffect } from 'react'
-import 'web-component-wheat-ui/dist/modal'
-import 'web-component-wheat-ui/dist/button'
+import 'web-component-wheat-ui/dist/radio'
 const App = () => {
   const [visible, setvisible] = useState(false)
   useEffect(() => {

@@ -1,67 +1,13 @@
-import { Meta, Story, Canvas } from '@storybook/addon-docs';
-
-import './index';
-
-<Meta title="Example/Button" />
-
-export const Template = (args) => <wheat-button>button</wheat-button>;
-
-
-<Story
-  name="Primary"
-  args={{
-    primary: true,
-    label: 'Button',
-  }}>
-  {Template.bind({})}
-</Story>
-
-
-
-
-
 
 ## 在 React 中使用
 ```js
-import 'web-component-wheat-ui/dist/button'
+import 'web-component-wheat-ui/dist/table'
 
 <wheat-button id="open" type="line" appearance="link" href="pp">
       <span slot="icon">+</span>
     打开弹框
 </wheat-button>
 ```
-
-## 在 Vue 中使用
-
-```html
-<template>
-  <div>
-    <wheat-button id="open" type="line" appearance="link" href="pp">
-      <span slot="icon">+</span>
-    打开弹框
-</wheat-button>
-  </div>
-</template>
-
-<script>
-import 'web-component-wheat-ui'
-
-export default {
-  data() {
-    return {
-      visiable: false
-    }
-  },
-  mounted() {
-    
-  },
-  methods: {
-    
-  }
-}
-</script>
-```
-
 ## Attribute
 
 | 参数       | 说明                                          | 类型    | 可选值                                                    | 默认值    |
@@ -73,5 +19,3 @@ export default {
 | href       | 设置按钮链接，设置后将用 a 标签渲染按钮       | string  | ︎                                                         | -         |
 | target     | 同 a 标签的 target 属性，仅在设置 href 后有效 | string  | ︎'\_self' \| '\_blank' \| '\_parent' \| '\_top'           | -         |
 | loading    | 是否显示 loading                              | boolean | ︎-                                                        | false     |
-
-

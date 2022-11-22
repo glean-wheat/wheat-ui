@@ -1,5 +1,5 @@
 import * as styleContent from './button.scss'
-import { parseCss, watchAttributess } from '../utils/utils'
+import { parseCss } from '../utils/utils'
 
 const template = document.createElement('template')
 const templateTagA = document.createElement('template')
