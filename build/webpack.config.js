@@ -35,6 +35,14 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(js|jsx)$/,
+        loader: require.resolve('babel-loader'),
+        options: {
+          cacheDirectory: true
+        },
+        exclude: /node_modules/
+      },
+      {
         test: /\.scss$/,
         use: [{
           loader: "css-loader",
@@ -43,6 +51,7 @@ module.exports = {
               modules: {
                 exportLocalsConvention: 'asIs',
               },
+              modules: false,
             }
           },
           "sass-loader"
@@ -54,6 +63,7 @@ module.exports = {
           loader: "css-loader",
             options: {
               esModule: false,
+              modules: false,
               modules: {
                 exportLocalsConvention: 'asIs',
               },

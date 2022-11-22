@@ -1,0 +1,80 @@
+import {useState} from 'react'
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+
+
+import { html } from 'lit-html';
+
+import './index';
+
+<Meta title="Example/Button" />
+
+export const Template = (args) => html`<wheat-table>button</wheat-table>`;
+
+
+<Canvas>
+  <Story name="基础使用" args={{ 
+      label: '基础使用'
+    }}>
+    {Template.bind({})}
+   </Story>
+</Canvas>
+
+
+
+
+
+
+## 在 React 中使用
+```js
+import 'web-component-wheat-ui/dist/table'
+
+<wheat-button id="open" type="line" appearance="link" href="pp">
+      <span slot="icon">+</span>
+    打开弹框
+</wheat-button>
+```
+
+## 在 Vue 中使用
+
+```html
+<template>
+  <div>
+    <wheat-button id="open" type="line" appearance="link" href="pp">
+      <span slot="icon">+</span>
+    打开弹框
+</wheat-button>
+  </div>
+</template>
+
+<script>
+import 'web-component-wheat-ui'
+
+export default {
+  data() {
+    return {
+      visiable: false
+    }
+  },
+  mounted() {
+    
+  },
+  methods: {
+    
+  }
+}
+</script>
+```
+
+## Attribute
+
+| 参数       | 说明                                          | 类型    | 可选值                                                    | 默认值    |
+| ---------- | --------------------------------------------- | ------- | --------------------------------------------------------- | --------- |
+| type       | 设置按钮类型                                  | string  | 'primary' \| 'line' \| 'success' \| 'danger' \| 'default' | 'default' |
+| appearance | 设置按钮外观                                  | string  | 'link' \| 'button'                                        | 'button'  |
+| disabled   | 设置按钮是否禁用                              | boolean | true \| false                                             | false     |
+| size       | 设置按钮尺寸                                  | string  | 'large' \| 'default' \| 'small'                           | 'default' |
+| href       | 设置按钮链接，设置后将用 a 标签渲染按钮       | string  | ︎                                                         | -         |
+| target     | 同 a 标签的 target 属性，仅在设置 href 后有效 | string  | ︎'\_self' \| '\_blank' \| '\_parent' \| '\_top'           | -         |
+| loading    | 是否显示 loading                              | boolean | ︎-                                                        | false     |
+
+
