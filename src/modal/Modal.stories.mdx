@@ -1,18 +1,35 @@
-import {useState} from 'react'
-import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
 
-
-import { html } from 'lit-html';
-
+import { Meta, Story } from '@storybook/addon-docs';
 import './index';
 import '../button/index.js'
 
 <Meta title="Example/Modal" />
 
+<!-- 👇 We create a “template” of how args map to rendering -->
+
+export const Template = (args) => {
+  return <div>
+    <wheat-button>button</wheat-button>
+    <wheat-modal visible='false'>modal</wheat-modal>
+  </div>
+};
+
+<!-- 👇 Each story then reuses that template -->
+<Story
+  name="Primary"
+  args={{
+    primary: true,
+    label: 'Button',
+  }}>
+  {Template.bind({})}
+</Story>
+
+
+<!-- 
 export const Template = (args) => html`
 <wheat-button>button</wheat-button>
 <wheat-modal visible='false'>modal</wheat-modal>
-`;
+`; -->
 
 
 <Canvas>

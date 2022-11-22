@@ -168,9 +168,5 @@ class WheatModal extends HTMLElement {
     this._shadowRoot.appendChild(WheatModaltemplate.content.cloneNode(true))
   }
 }
- /**
-   * 生命周期的执行顺序  挂载的时候 按照react 或者vue中的执行顺序是相同的
-   * constructor -> attributeChangedCallback -> connectedCallback
-   */
 // this 指代该标签
 !window.customElements.get(prefix) && window.customElements.define(prefix, WheatModal)

@@ -1,23 +1,20 @@
-import {useState} from 'react'
-import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
-
-
-import { html } from 'lit-html';
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
 
 import './index';
 
 <Meta title="Example/Button" />
 
-export const Template = (args) => html`<wheat-button>button</wheat-button>`;
+export const Template = (args) => <wheat-button>button</wheat-button>;
 
 
-<Canvas>
-  <Story name="基础使用" args={{ 
-      label: '基础使用'
-    }}>
-    {Template.bind({})}
-   </Story>
-</Canvas>
+<Story
+  name="Primary"
+  args={{
+    primary: true,
+    label: 'Button',
+  }}>
+  {Template.bind({})}
+</Story>
 
 
 

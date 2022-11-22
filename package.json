@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config ./build/webpack.config.js",
+    "dev": "webpack-dev-server --open --config ./build/webpack.config.js",
     "start": "webpack-dev-server --open --config ./build/webpack.config.js",
     "storybook": "start-storybook --no-manager-cache false -p 6006",
     "build-storybook": "build-storybook"
@@ -56,6 +57,7 @@
   },
   "homepage": "https://github.com/glean-wheat/wheat-ui#readme",
   "dependencies": {
+    "@befe/brick": "^0.2.50",
     "antd": "^4.24.3",
     "lit": "^2.0.2"
   }
