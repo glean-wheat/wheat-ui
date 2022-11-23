@@ -1,9 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Table from 'antd/es/table'
-// import Tag from 'antd/es/tag'
-// import Space from 'antd/es/space'
-import Input from 'antd/es/input'
+import * as antdComponent from 'antd'
 import * as styleContent from './table.scss'
 
 const template = document.createElement('template')
@@ -26,18 +23,22 @@ class WheatTable extends HTMLElement {
     super()
     this.tableData = [];
     this.columns = [];
+    this.tableProps = {};
     // 给默认值
     this.changeFn = (e) => {}
-    console.log('react', React.createElement)
+    console.log('react', antdComponent)
     this.render()
+
   }
 
-  static get observedAttributes() {
-    return ['table-data', 'columns']
+  setTableProps(props) {
+    this.tableProps = props;
+    this.renderReactElement();
   }
-  setChangeFn(fn) {
-    console.log('fn', fn)
-    this.changeFn = fn
+
+  setDataSource(data){
+    this['table-data'] = data;
+    this.renderReactElement();
   }
 
   setColumns(columns) {
@@ -47,12 +48,11 @@ class WheatTable extends HTMLElement {
       const _item = {}
       Object.keys(item).forEach(key => {
         if(key === 'render'){
-          console.log('item.render(text)', )
-          _item.render = (text) => {
-            const {type, ...other} = item.render(text)
-            console.log('type', type);
-            if(type === 'Input'){
-              return <Input {...other}/>
+          _item.render = (text, row) => {
+            const {componentName, ...other} = item.render(text, row)
+            if(antdComponent && antdComponent[componentName]){
+              const Component = antdComponent[componentName]
+              return <Component {...other}/>
             }
             return React.createElement(type, {...other}, text)
           };
@@ -66,26 +66,14 @@ class WheatTable extends HTMLElement {
     this.renderReactElement()
   }
 
-  attributeChangedCallback(name, oldVal, newVal) {
-    console.log('属性发生变化', name, oldVal, newVal, typeof newVal)
-    if(name === 'inputchange') {
-      this.inputChangeCallback = new Function(newVal) ;
-      console.log('inputchange', this.inputChangeCallback);
-    } else if(typeof newVal === 'string'){
-      this[name] = JSON.parse(newVal)
-    }
-    // const a = eval(newVal)
-    // console.log(a)
-    this.renderReactElement()
-  }
+  
   renderReactElement() {
     const data = this['table-data'];
-    const root = ReactDOM.createRoot(this.$table);
-    root.render(<Table columns={this.columns} dataSource={data} />);
+    const Table = antdComponent['Table']
+    this.root.render(<Table columns={this.columns} dataSource={data} {...this.tableProps} />);
   }
 
   connectedCallback() {
-    console.log('----', this.tableData, this.columns)
     this.renderReactElement()
   }
   render() {
@@ -93,6 +81,7 @@ class WheatTable extends HTMLElement {
     const mountPoint = template.content.cloneNode(true);
     this._shadowRoot.appendChild(mountPoint);
     this.$table = this._shadowRoot.querySelector('.wheat-table')
+    this.root = ReactDOM.createRoot(this.$table);
   }
 
 }
