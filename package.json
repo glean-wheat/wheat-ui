@@ -3,13 +3,16 @@
   "version": "1.1.7",
   "description": "通过 web component 打造全新组件库",
   "main": "index.js",
+  "homepage": "./", 
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config ./build/webpack.config.js",
     "dev": "webpack-dev-server --open --config ./build/webpack.config.js",
     "start": "webpack-dev-server --open --config ./build/webpack.config.js",
     "storybook": "start-storybook --no-manager-cache false -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "predeploy": "build-storybook", 
+    "deploy": "gh-pages -d storybook-static"
   },
   "repository": {
     "type": "git",
@@ -58,7 +61,6 @@
   "bugs": {
     "url": "https://github.com/glean-wheat/wheat-ui/issues"
   },
-  "homepage": "https://github.com/glean-wheat/wheat-ui#readme",
   "dependencies": {
     "@befe/brick": "^0.2.50",
     "antd": "^4.24.3",
