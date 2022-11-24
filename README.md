@@ -200,9 +200,3 @@ git commit -m "feat: #3"
 
 master 是保护分支；需要有 review 之后；才可合并
 
-## 文档规划
-
-- [ ] 文档接入； storybook
-- [ ] 单测接入
-- [ ] react、vue 使用样式案例
-
