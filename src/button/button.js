@@ -14,15 +14,18 @@ template.innerHTML = `
   ${styles}
   <div class="wheat-button-container">
     <button class='wheat-button'>
-      <slot name='icon'/>
-      Label
+      <span class='wheat-content'>label</span>
     </button>
+    <slot name='icon'/>
   </div>
 `
 templateTagA.innerHTML = `
   ${styles}
   <div class="wheat-button-container">
-    <a class='wheat-button'><slot name='icon'/>链接</a>
+    <a class='wheat-button'>
+    <span class='wheat-content'>label</span>
+    <slot name='icon'/>
+    </a>
   </div>
 `
 
@@ -32,7 +35,6 @@ class WheatButton extends HTMLElement {
     this.href = this.getAttribute('href')
     this.render()
     this.$button = this._shadowRoot.querySelector('.wheat-button')
-    console.log(this)
   }
 
   static get observedAttributes() {
@@ -64,6 +66,7 @@ class WheatButton extends HTMLElement {
 
   connectedCallback() {
     this.initBtnStyle()
+    console.log('this.innerHTML', this.innerHTML);
     this.$button.innerHTML = this.innerHTML
   }
   render() {

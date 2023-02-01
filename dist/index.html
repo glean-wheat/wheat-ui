@@ -4,20 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="./static/variables.css">
+    <link rel="stylesheet" href="./dist/static/variables.css">
     <title>Modal</title>
+    <script src="./dist/button.js"></script>
   </head>
-  <style></style>
-  <script>
-    var a = [{
-      title: 'Modal'
-    }]
-  </script>
   <body>
-    
-    <!-- <wheat-button id="open" type="line">
+    <wheat-button id="open" type="line">
       打开弹框
-    </wheat-button> -->
+    </wheat-button>
+    <!-- <script>
+      const btn = document.querySelector('wheat-button');
+      // 给 Shadow DOM 增加 style 标签
+      let styleEle = document.createElement("style");
+      styleEle.textContent = `
+          .wheat-button {
+              background-color: yellow;
+              font-size: 16px;
+              font-weight: bold;
+          }
+      `;
+      btn.shadowRoot?.appendChild(styleEle);
+    </script> -->
     <!-- <wheat-button onclick="showModal()" id="open" type="line">
       打开弹框
     </wheat-button>
@@ -30,7 +37,6 @@
       </div>
     </wheat-modal>
     <wheat-input></wheat-input> -->
-    <wheat-table data="{{[1,2,2]}}"></wheat-table>
 
 
     <!-- <wheat-radio id="testradio"  value="1" name="name1"></wheat-radio>
@@ -40,10 +46,6 @@
     <input type="radio" name='test' value="radioval">
     <input type="radio" id="myradio" name='test' disabled  checked value="radioval"> -->
   <script src="wheat.ui.min.js"></script><script src="button.js"></script><script src="card.js"></script><script src="input.js"></script><script src="modal.js"></script><script src="radio.js"></script><script src="table.js"></script></body>
-  <script>
-    const tabBox = document.querySelector('wheat-table')
-    tabBox.setAttribute('data', a);
-  </script>
   <!-- <script>
     var radioval = '';
     const dom = document.getElementById('testradio')

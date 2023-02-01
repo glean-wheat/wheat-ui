@@ -4,7 +4,16 @@ import './index';
 
 <Meta title="Example/Button" />
 
-export const Template = (args) => <wheat-button>button</wheat-button>;
+export const Template = (args) => {
+  return (
+    <wheat-button>
+      button
+      <span slot="icon" class="tessss">
+        12
+      </span>
+      </wheat-button>
+    )
+};
 
 
 <Story

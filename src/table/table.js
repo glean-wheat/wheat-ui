@@ -26,7 +26,6 @@ class WheatTable extends HTMLElement {
     this.tableProps = {};
     // 给默认值
     this.changeFn = (e) => {}
-    console.log('react', antdComponent)
     this.render()
 
   }
@@ -42,7 +41,6 @@ class WheatTable extends HTMLElement {
   }
 
   setColumns(columns) {
-    console.log('columns', columns)
     const columnsData = [];
     columns.forEach(item => {
       const _item = {}

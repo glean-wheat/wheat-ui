@@ -3,7 +3,7 @@
   "version": "1.1.7",
   "description": "通过 web component 打造全新组件库",
   "main": "index.js",
-  "homepage": "./",
+  "homepage": "https://glean-wheat.github.io/wheat-ui/storybook-static",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config ./build/webpack.config.js",

@@ -57,11 +57,9 @@ class WheatCard extends HTMLElement {
   }
 
   connectedCallback() {
-    console.log('33')
     this.initBtnStyle()
   }
   render() {
-    console.log('22')
     this._shadowRoot = this.attachShadow({ mode: 'open' })
     this._shadowRoot.appendChild(template.content.cloneNode(true))
     // Apply external styles to the shadow dom
