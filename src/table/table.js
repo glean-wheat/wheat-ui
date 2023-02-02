@@ -39,9 +39,23 @@ class WheatTable extends HTMLElement {
     this['table-data'] = data;
     this.renderReactElement();
   }
-  parseRender (item) {
-    if(Array.isArray){
-
+  parseRender (renderObj, text, row) {
+    const renderInfo = renderObj.render(text, row)
+    const renderNode = (item, rowText, row) => {
+      const {componentName, ...other} = item
+      if(antdComponent && antdComponent[componentName]){
+        const Component = antdComponent[componentName]
+        return <Component {...other}/>
+      }
+      const {type} = item;
+      return React.createElement(type || 'div', {...other}, rowText)
+    }
+    if(Array.isArray(renderInfo)){
+      return renderInfo.map(item => {
+        return renderNode(item, text, row)
+      })
+    } else {
+      return renderNode(renderInfo, text, row)
     }
   }
 
@@ -52,12 +66,7 @@ class WheatTable extends HTMLElement {
       Object.keys(item).forEach(key => {
         if(key === 'render'){
           _item.render = (text, row) => {
-            const {componentName, ...other} = item.render(text, row)
-            if(antdComponent && antdComponent[componentName]){
-              const Component = antdComponent[componentName]
-              return <Component {...other}/>
-            }
-            return React.createElement(type || 'div', {...other}, text)
+            return this.parseRender(item, text, row)
           };
         } else {
           _item[key] = item[key]

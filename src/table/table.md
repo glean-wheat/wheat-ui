@@ -1,21 +1,110 @@
+# antdTable for any frame
 
-## 在 React 中使用
+69行代码 实现一个san(百度自研框架)、vue、react都可以用的table组件
+
+基于 webcomponents 封装一个通用组件库! 打破框架的隔阂.
+
+看着这么多react 优秀的组件库，我们要想办法用上
+
+### 技术实现
+
+antd等等这些组件库的组件功能都比较全。应该充分利用上。毕竟都是js、html、css组成的。处理好隔离就能很好的使用。
+
+![实现思路](img.png)
+# 在 Vue 中使用
+
 ```js
-import 'web-component-wheat-ui/dist/table'
+<template>
+  <div class="hello">
+    <wheat-table />
+  </div>
+</template>
+<script>
+  import 'web-component-wheat-ui/dist/table';
+  import 'web-component-wheat-ui/dist/static/variables.css';
+  export default {
+    name: 'HelloWorld',
+    props: {
+      msg: String,
+    },
+    data() {
+      return {
+        data: [],
+      };
+    },
+    mounted() {
+      const tabBox = document.querySelector('wheat-table');
+    // 更新表格列
+    tabBox.setColumns([
+      {
+        title: 'Name',
+        dataIndex: 'name',
+        key: 'name',
+      },
+      {
+        title: 'Age',
+        dataIndex: 'age',
+        key: 'age',
+      },
+      {
+        title: 'Address',
+        dataIndex: 'address',
+        key: 'address',
+      },
+      {
+        title: '编辑列',
+        dataIndex: 'editRow',
+        key: 'editRow',
+        render: (text) => {
+          return {
+            componentName: 'Input',
+            className: 'span-className',
+            onChange: (e) => {
+              console.log('e', e.target.value);
+            },
+          };
+        },
+      },
+    ]);
+    const dataSource = [];
+    for (let index = 0; index < 30; index++) {
+      dataSource.push({
+        {
+          key: index,
+          name: 'John Brown',
+          age: 32,
+          address: `New York No. ${index} Lake Park`,
+          editRow: 'John1',
+        },
+      })
+    }
+    tabBox.setDataSource(dataSource);
+    },
+    methods: {
+      
+    },
+  };
+</script>
 
-<wheat-button id="open" type="line" appearance="link" href="pp">
-      <span slot="icon">+</span>
-    打开弹框
-</wheat-button>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+  h3 {
+    margin: 40px 0 0;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  a {
+    color: #42b983;
+  }
+</style>
 ```
-## Attribute
 
-| 参数       | 说明                                          | 类型    | 可选值                                                    | 默认值    |
-| ---------- | --------------------------------------------- | ------- | --------------------------------------------------------- | --------- |
-| type       | 设置按钮类型                                  | string  | 'primary' \| 'line' \| 'success' \| 'danger' \| 'default' | 'default' |
-| appearance | 设置按钮外观                                  | string  | 'link' \| 'button'                                        | 'button'  |
-| disabled   | 设置按钮是否禁用                              | boolean | true \| false                                             | false     |
-| size       | 设置按钮尺寸                                  | string  | 'large' \| 'default' \| 'small'                           | 'default' |
-| href       | 设置按钮链接，设置后将用 a 标签渲染按钮       | string  | ︎                                                         | -         |
-| target     | 同 a 标签的 target 属性，仅在设置 href 后有效 | string  | ︎'\_self' \| '\_blank' \| '\_parent' \| '\_top'           | -         |
-| loading    | 是否显示 loading                              | boolean | ︎-                                                        | false     |
+### 组件文档地址
+
+[文档](https://glean-wheat.github.io/wheat-ui/storybook-static/?path=/docs/componentreact-table--primary)

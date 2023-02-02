@@ -54,6 +54,31 @@ export const Template = (args) => {
           };
         },
       },
+      {
+        title: '操作列',
+        dataIndex: 'editRow',
+        key: 'editRow',
+        render: (text, row) => {
+          console.log('----row', row);
+          return [
+            {
+              componentName: 'Button',
+              children: '编辑',
+              className: 'handle-btn',
+              onClick: (e) => {
+                console.log('点击编辑按钮回调')
+              }
+            },
+            {
+              componentName: 'Button',
+              children: '删除',
+              onClick: (e) => {
+                console.log('点击删除按钮回调')
+              }
+            }
+          ];
+        },
+      },
     ]);
     const dataSource = [];
     for (let index = 0; index < 30; index++) {
@@ -68,6 +93,13 @@ export const Template = (args) => {
         })
     }
     tabBox.setDataSource(dataSource);
+    const styleEle = document.createElement('style');
+        styleEle.textContent = `
+        .handle-btn {
+            margin-right: 8px;
+        }
+        `;
+    tabBox.shadowRoot.appendChild(styleEle);
   }, [args]);
   return (
     <div>
@@ -300,6 +332,20 @@ const App = () => {
 
 export default App;
 ```
+
+# antdTable for any frame
+
+69行代码 实现一个san(百度自研框架)、vue、react都可以用的table组件
+
+基于 webcomponents 封装一个通用组件库! 打破框架的隔阂.
+
+看着这么多react 优秀的组件库，我们要想办法用上
+
+### 技术实现
+
+antd等等这些组件库的组件功能都比较全。应该充分利用上。毕竟都是js、html、css组成的。处理好隔离就能很好的使用。
+
+![实现思路](https://user-images.githubusercontent.com/24740506/216220940-3486c8d2-2472-48ae-a098-b9bbb26d37c6.png)
 
 ## 更多属性设置请参考 antd
 
