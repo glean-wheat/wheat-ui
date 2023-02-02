@@ -39,6 +39,11 @@ class WheatTable extends HTMLElement {
     this['table-data'] = data;
     this.renderReactElement();
   }
+  parseRender (item) {
+    if(Array.isArray){
+
+    }
+  }
 
   setColumns(columns) {
     const columnsData = [];
@@ -52,7 +57,7 @@ class WheatTable extends HTMLElement {
               const Component = antdComponent[componentName]
               return <Component {...other}/>
             }
-            return React.createElement(type, {...other}, text)
+            return React.createElement(type || 'div', {...other}, text)
           };
         } else {
           _item[key] = item[key]
