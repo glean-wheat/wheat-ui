@@ -38,6 +38,13 @@ export const Template = (args) => {
         title: 'Address',
         dataIndex: 'address',
         key: 'address',
+        render: (text, row) => {
+          console.log('----row', row);
+          return {
+            tagName: 'span',
+            children: '123213'
+          };
+        },
       },
       {
         title: '编辑列',

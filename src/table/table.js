@@ -42,13 +42,13 @@ class WheatTable extends HTMLElement {
   parseRender (renderObj, text, row) {
     const renderInfo = renderObj.render(text, row)
     const renderNode = (item, rowText, row) => {
-      const {componentName, ...other} = item
-      if(antdComponent && antdComponent[componentName]){
+      if(item === null) return null;
+      const {componentName, tagName, ...other} = item
+      if(antdComponent && componentName && antdComponent[componentName]){
         const Component = antdComponent[componentName]
         return <Component {...other}/>
       }
-      const {type} = item;
-      return React.createElement(type || 'div', {...other}, rowText)
+      return React.createElement(tagName, {...other}, item.children)
     }
     if(Array.isArray(renderInfo)){
       return renderInfo.map(item => {
