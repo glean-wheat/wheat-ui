@@ -15,8 +15,8 @@ export const Template = (args) => {
     const tabBox = document.querySelector('wheat-table');
     console.log('args', args);
     tabBox.setTableProps({
-      ...args
-    })
+      ...args,
+    });
     // 更新表格列
     tabBox.setColumns([
       {
@@ -38,13 +38,32 @@ export const Template = (args) => {
         title: 'Address',
         dataIndex: 'address',
         key: 'address',
-        render: (text, row) => {
-          console.log('----row', row);
-          return {
-            tagName: 'span',
-            children: '123213'
-          };
-        },
+        children: [
+          {
+            title: 'Address-1',
+            dataIndex: 'address-1',
+            key: 'address-1',
+            render: (text, row) => {
+              console.log('----row', row);
+              return {
+                tagName: 'span',
+                children: '123213',
+              };
+            },
+          },
+          {
+            title: 'Address-2',
+            dataIndex: 'address-2',
+            key: 'address-2',
+            render: (text, row) => {
+              console.log('----row', row);
+              return {
+                tagName: 'span',
+                children: 'address-2',
+              };
+            },
+          },
+        ],
       },
       {
         title: '编辑列',
@@ -73,35 +92,34 @@ export const Template = (args) => {
               children: '编辑',
               className: 'handle-btn',
               onClick: (e) => {
-                console.log('点击编辑按钮回调')
-              }
+                console.log('点击编辑按钮回调');
+              },
             },
             {
               componentName: 'Button',
               children: '删除',
               onClick: (e) => {
-                console.log('点击删除按钮回调')
-              }
-            }
+                console.log('点击删除按钮回调');
+              },
+            },
           ];
         },
       },
     ]);
     const dataSource = [];
     for (let index = 0; index < 30; index++) {
-      dataSource.push(
-        {
-          key: index,
-          index: index + 1,
-          name: 'John Brown',
-          age: 32,
-          address: `New York No. ${index} Lake Park`,
-          editRow: 'John1',
-        })
+      dataSource.push({
+        key: index,
+        index: index + 1,
+        name: 'John Brown',
+        age: 32,
+        address: `New York No. ${index} Lake Park`,
+        editRow: 'John1',
+      });
     }
     tabBox.setDataSource(dataSource);
     const styleEle = document.createElement('style');
-        styleEle.textContent = `
+    styleEle.textContent = `
         .handle-btn {
             margin-right: 8px;
         }
@@ -262,7 +280,7 @@ export default defineComponent({
     tabBox.setDataSource(dataSource);
     },
     methods: {
-      
+
     },
   };
 </script>
@@ -342,15 +360,15 @@ export default App;
 
 # antdTable for any frame
 
-69行代码 实现一个san(百度自研框架)、vue、react都可以用的table组件
+69 行代码 实现一个 san(百度自研框架)、vue、react 都可以用的 table 组件
 
 基于 webcomponents 封装一个通用组件库! 打破框架的隔阂.
 
-看着这么多react 优秀的组件库，我们要想办法用上
+看着这么多 react 优秀的组件库，我们要想办法用上
 
 ### 技术实现
 
-antd等等这些组件库的组件功能都比较全。应该充分利用上。毕竟都是js、html、css组成的。处理好隔离就能很好的使用。
+antd 等等这些组件库的组件功能都比较全。应该充分利用上。毕竟都是 js、html、css 组成的。处理好隔离就能很好的使用。
 
 ![实现思路](https://user-images.githubusercontent.com/24740506/216220940-3486c8d2-2472-48ae-a098-b9bbb26d37c6.png)
 
@@ -448,7 +466,7 @@ antd等等这些组件库的组件功能都比较全。应该充分利用上。�
 | filters                           | 表头的筛选菜单项                                                                                                                                                                             | object\[]                                                                                                                                                                           | -                      |                                |
 | fixed                             | （IE 下无效）列是否固定，可选 true (等效于 left) `left` `right`                                                                                                                              | boolean \| string                                                                                                                                                                   | false                  |                                |
 | key                               | React 需要的 key，如果已经设置了唯一的 `dataIndex`，可以忽略这个属性                                                                                                                         | string                                                                                                                                                                              | -                      |                                |
-| render                            | 生成复杂数据的渲染函数，参数分别为当前行的值，当前行数据，行索引                                                                                                                             | function(text, record, index) => [RenderComponent](#rendercomponent)                                                                                                                                                    | -                      |                                |
+| render                            | 生成复杂数据的渲染函数，参数分别为当前行的值，当前行数据，行索引                                                                                                                             | function(text, record, index) => [RenderComponent](#rendercomponent)                                                                                                                | -                      |                                |
 | responsive                        | 响应式 breakpoint 配置列表。未设置则始终可见。                                                                                                                                               | [Breakpoint](https://github.com/ant-design/ant-design/blob/015109b42b85c63146371b4e32b883cf97b088e8/components/_util/responsiveObserve.ts#L1)\[]                                    | -                      | 4.2.0                          |
 | shouldCellUpdate                  | 自定义单元格渲染时机                                                                                                                                                                         | (record, prevRecord) => boolean                                                                                                                                                     | -                      | 4.3.0                          |
 | showSorterTooltip                 | 表头显示下一次排序的 tooltip 提示, 覆盖 table 中 `showSorterTooltip`                                                                                                                         | boolean \| [Tooltip props](/components/tooltip/#API)                                                                                                                                | true                   |                                |
@@ -464,11 +482,11 @@ antd等等这些组件库的组件功能都比较全。应该充分利用上。�
 
 ### RenderComponent
 
-| 参数  | 说明         | 类型      | 默认值 |
-| ----- | ------------ | --------- | ------ |
-| componentName | antd中组件名称 | string | null |
-| type | 元素类型（div、span） | string | div |
-| ...other | 相关组件或者元素的配置 | [key]: any |  |
+| 参数          | 说明                   | 类型       | 默认值 |
+| ------------- | ---------------------- | ---------- | ------ |
+| componentName | antd 中组件名称        | string     | null   |
+| type          | 元素类型（div、span）  | string     | div    |
+| ...other      | 相关组件或者元素的配置 | [key]: any |        |
 
 ### ColumnGroup
 

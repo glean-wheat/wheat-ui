@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import * as antdComponent from 'antd'
 import * as styleContent from './table.scss'
-
+import {cloneDeep} from 'lodash';
 const template = document.createElement('template')
 const prefix = 'wheat-table'
 
@@ -39,8 +39,7 @@ class WheatTable extends HTMLElement {
     this['table-data'] = data;
     this.renderReactElement();
   }
-  parseRender (renderObj, text, row) {
-    const renderInfo = renderObj.render(text, row)
+  parseRender (renderInfo, text, row) {
     const renderNode = (item, rowText, row) => {
       if(item === null) return null;
       const {componentName, tagName, ...other} = item
@@ -58,22 +57,22 @@ class WheatTable extends HTMLElement {
       return renderNode(renderInfo, text, row)
     }
   }
+  parseColumns(columns) {
+    columns.forEach(item => {
+      if(item.children && item.children.length){
+        item.children = this.parseColumns(item.children);
+      } else if (item.render){
+        const renderFun = item.render;
+        item.render = (text, row) => {
+          return this.parseRender(renderFun(text, row), text, row)
+        };
+      }
+    })
+    return columns
+  }
 
   setColumns(columns) {
-    const columnsData = [];
-    columns.forEach(item => {
-      const _item = {}
-      Object.keys(item).forEach(key => {
-        if(key === 'render'){
-          _item.render = (text, row) => {
-            return this.parseRender(item, text, row)
-          };
-        } else {
-          _item[key] = item[key]
-        }
-      })
-      columnsData.push(_item)
-    })
+    const columnsData = this.parseColumns(cloneDeep(columns));
     this.columns = columnsData
     this.renderReactElement()
   }
