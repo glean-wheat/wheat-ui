@@ -13,9 +13,9 @@ import './index.js';
 export const Template = (args) => {
   useEffect(() => {
     const tabBox = document.querySelector('wheat-table');
-    console.log('args', args);
     tabBox.setTableProps({
       ...args,
+      scroll: {x: 1000, y: 500}
     });
     // 更新表格列
     tabBox.setColumns([
@@ -23,6 +23,7 @@ export const Template = (args) => {
         title: 'Index',
         dataIndex: 'index',
         key: 'index',
+        width: 100
       },
       {
         title: 'Name',
@@ -33,16 +34,19 @@ export const Template = (args) => {
         title: 'Age',
         dataIndex: 'age',
         key: 'age',
+        width: 100
       },
       {
         title: 'Address',
-        dataIndex: 'address',
+        dataIndex: '',
         key: 'address',
+        width: 200,
         children: [
           {
             title: 'Address-1',
             dataIndex: 'address-1',
             key: 'address-1',
+            width: 100,
             render: (text, row) => {
               console.log('----row', row);
               return {
@@ -55,6 +59,7 @@ export const Template = (args) => {
             title: 'Address-2',
             dataIndex: 'address-2',
             key: 'address-2',
+            width: 100,
             render: (text, row) => {
               console.log('----row', row);
               return {
@@ -67,7 +72,7 @@ export const Template = (args) => {
       },
       {
         title: '编辑列',
-        dataIndex: 'editRow',
+        dataIndex: '',
         key: 'editRow',
         render: (text, row) => {
           console.log('----row', row);
@@ -82,7 +87,7 @@ export const Template = (args) => {
       },
       {
         title: '操作列',
-        dataIndex: 'editRow',
+        dataIndex: '',
         key: 'editRow',
         render: (text, row) => {
           console.log('----row', row);
@@ -118,13 +123,6 @@ export const Template = (args) => {
       });
     }
     tabBox.setDataSource(dataSource);
-    const styleEle = document.createElement('style');
-    styleEle.textContent = `
-        .handle-btn {
-            margin-right: 8px;
-        }
-        `;
-    tabBox.shadowRoot.appendChild(styleEle);
   }, [args]);
   return (
     <div>
