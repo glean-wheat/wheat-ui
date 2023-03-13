@@ -1,6 +1,6 @@
 {
   "name": "web-component-wheat-ui",
-  "version": "1.1.17",
+  "version": "1.1.18",
   "description": "通过 web component 打造全新组件库",
   "main": "index.js",
   "homepage": "https://glean-wheat.github.io/wheat-ui/storybook-static",
